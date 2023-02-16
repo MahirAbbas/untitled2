@@ -125,6 +125,7 @@ int main() {
 //            ImGui::Separator();
             ImGui::TextWrapped("Debug Window");
             ImGui::Text("Application average %.3f ms/frame (%.1f FPS)", 1000.0f / ImGui::GetIO().Framerate, ImGui::GetIO().Framerate);
+//            ImGui::Text("col: %.1f", myGui.sphere.col);
             ImGui::PushStyleColor(ImGuiCol_ChildBg, IM_COL32(127, 127, 127, 100));
             ImGui::BeginChild("Debug_win", ImVec2(400,200), true, ImGuiWindowFlags_None);
             ImGui::TextWrapped(myGui.GetText().c_str());
