@@ -1,0 +1,9 @@
+/home/mahir/CLionProjects/untitled2/cmake-build-debug/CMakeFiles/untitled2.dir
+/home/mahir/CLionProjects/untitled2/cmake-build-debug/CMakeFiles/edit_cache.dir
+/home/mahir/CLionProjects/untitled2/cmake-build-debug/CMakeFiles/rebuild_cache.dir
+/home/mahir/CLionProjects/untitled2/cmake-build-debug/imgui/CMakeFiles/imgui.dir
+/home/mahir/CLionProjects/untitled2/cmake-build-debug/imgui/CMakeFiles/edit_cache.dir
+/home/mahir/CLionProjects/untitled2/cmake-build-debug/imgui/CMakeFiles/rebuild_cache.dir
+/home/mahir/CLionProjects/untitled2/cmake-build-debug/imgui/backends/CMakeFiles/backends.dir
+/home/mahir/CLionProjects/untitled2/cmake-build-debug/imgui/backends/CMakeFiles/edit_cache.dir
+/home/mahir/CLionProjects/untitled2/cmake-build-debug/imgui/backends/CMakeFiles/rebuild_cache.dir

@@ -1,0 +1,17 @@
+# ninja log v5
+2155	2203	1676228204566024688	imgui/libimgui.a	4792be776c327568
+18	1661	1676228272697886029	imgui/backends/CMakeFiles/backends.dir/imgui_impl_opengl3.cpp.o	36b96ca47358d343
+7	518	1676498335741532331	CMakeFiles/untitled2.dir/imgui/glad.c.o	1a78c57e11ce924b
+49	878	1676227509658610147	imgui/backends/CMakeFiles/backends.dir/imgui_impl_glfw.cpp.o	1fe24aaa554caa02
+9	242	1676227253818620707	CMakeFiles/untitled2.dir/glad.c.o	83ece0ccd3a35bef
+4	76	1676550903855699921	build.ninja	eae013124b027b90
+2	1545	1676550742543665378	CMakeFiles/untitled2.dir/main.cpp.o	408b5ac14572f725
+1	2121	1676228204486024853	imgui/CMakeFiles/imgui.dir/imgui_draw.cpp.o	58a04b4806b16842
+2	2155	1676228204518024787	imgui/CMakeFiles/imgui.dir/imgui_widgets.cpp.o	533cff97e30b9d78
+10	2155	1676226950871120405	imgui/CMakeFiles/imgui.dir/imgui.cpp.o	248ce2b84e9c62a1
+12	186	1676227253766620672	CMakeFiles/untitled2.dir/ImGuiTest.cpp.o	cb8565a76b3d512b
+2	1719	1676228204082025684	imgui/CMakeFiles/imgui.dir/imgui_tables.cpp.o	f649af5ba8b03310
+1546	1775	1676550742771665441	untitled2	d502138491fade9d
+27	3071	1676291114571790688	CMakeFiles/untitled2.dir/imguiFiles/imgui_demo.cpp.o	32e9e35930e10e84
+28	53	1676228567353543840	imgui/backends/libbackends.a	23eb41b0076d55ae
+1	1332	1676228203694026483	imgui/CMakeFiles/imgui.dir/imgui_demo.cpp.o	1c812025a791148b
