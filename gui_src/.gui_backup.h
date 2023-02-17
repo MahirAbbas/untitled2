@@ -74,7 +74,7 @@ public:
         glBindTexture(GL_TEXTURE_2D, 0);
         ImGui::Image(reinterpret_cast<void *>(texture), imagesize);
     }
-    shapes::sphere sphere = shapes::sphere();
+//    shapes::sphere sphere = shapes::sphere();
 
 private:
     void UpdateText() {

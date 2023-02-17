@@ -14,47 +14,6 @@ void processInput(GLFWwindow *window);
 
 int main() {
 
-//
-//    glfwInit();
-//    // SETS OpenGl version
-//    glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
-//    glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
-//    glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
-//
-//    // creates window
-//    GLFWwindow* window = glfwCreateWindow(800,600, "LearnOpenGl", NULL,NULL);
-//    if (window == NULL)
-//    {
-//        std::cout << "Failed to init glfw \n";
-//        glfwTerminate();
-//        return -1;
-//    }
-//    // sets current window as one to draw to
-//    glfwMakeContextCurrent(window);
-//    // dunno
-//    gladLoadGLLoader(reinterpret_cast<GLADloadproc>(glfwGetProcAddress));
-//    if (!gladLoadGLLoader((GLADloadproc) glfwGetProcAddress))
-//    {
-//        std::cout <<" Failed to initialise GLAD \n";
-//        return -1;
-//    }
-//    // 0,0 sets location of lower left corner of the window, 800,600 set the size of rendering pixels
-//    glViewport(0,0,800,600);
-//    // sets callback for when you resize window
-//    glfwSetFramebufferSizeCallback(window, framebuffer_size_callback);
-//
-//    while (!glfwWindowShouldClose(window))
-//    {
-//        // close window if ESCAPE key is pressed
-//        processInput(window);
-//        glfwSwapBuffers(window);
-//        glfwPollEvents();
-//    }
-//    glfwTerminate();
-//    return 0;
-//unsigned int texture;
-//glGenTextures(1, &texture);
-
     if (!glfwInit())
         return -1;
     GLFWwindow* window = glfwCreateWindow(1920, 1080, "Test Window", NULL, NULL);
@@ -110,18 +69,9 @@ int main() {
             static float red,green, blue;
             ImGui::Begin("Test2", NULL, ImGuiWindowFlags_AlwaysAutoResize);
             ImGui::PushItemWidth(200) ;
-            if (ImGui::SliderFloat("green", &green, 0.f, 1.f))
-            {
-                myGui.SetGreen(green);
-            }
-            if (ImGui::SliderFloat("red", &red, 0.f, 1.f))
-            {
-                myGui.SetRed(red);
-            }
-            if (ImGui::SliderFloat("blue", &blue, 0.f, 1.f))
-            {
-                myGui.SetBlue(blue);
-            }
+            (ImGui::SliderFloat("green", &myGui.sphere.green, 0.f, 1.f));
+            (ImGui::SliderFloat("red", &myGui.sphere.red, 0.f, 1.f));
+            (ImGui::SliderFloat("blue", &myGui.sphere.blue, 0.f, 1.f));
 //            ImGui::Separator();
             ImGui::TextWrapped("Debug Window");
             ImGui::Text("Application average %.3f ms/frame (%.1f FPS)", 1000.0f / ImGui::GetIO().Framerate, ImGui::GetIO().Framerate);
@@ -139,28 +89,12 @@ int main() {
 
             ImVec2 imagesize(256, 256);
 
-            if (false)   {
-            GLuint testTexture;
-            unsigned char bluepixel[4] = {0,0,255,255};
-            glGenTextures(1, &testTexture);
-            glBindTexture(GL_TEXTURE_2D, testTexture);
-            glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, 1, 1, 0, GL_RGBA, GL_UNSIGNED_BYTE, bluepixel);
-            glBindTexture(GL_TEXTURE_2D, 0);
-//            ImVec2 imagesize(256,256);
-            ImGui::Image(reinterpret_cast<void*>(testTexture), imagesize);
-            }
-            if (false) {
-                glGenTextures(1, &myGui.texture);
-                glBindTexture(GL_TEXTURE_2D, myGui.texture);
-                glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, 1, 1, 0, GL_RGBA, GL_UNSIGNED_BYTE,myGui.bluepixel);
-                glBindTexture(GL_TEXTURE_2D, 0);
-                ImGui::Image(reinterpret_cast<void *>(myGui.texture), imagesize);
-            }
             if (true)
             {
 //                myGui.bluePixel();
 //                myGui.bluePixel();
 //                ImGui::Image(reinterpret_cast<void *>(myGui.texture), imagesize);
+
                 myGui.Update();
 
             }
