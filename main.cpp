@@ -5,6 +5,7 @@
 #include "imgui/backends/imgui_impl_opengl3_loader.h"
 #include <cmath>
 //#include "glad.h"
+#include <stdlib.h>
 #include "GLFW/glfw3.h"
 #include "gui_src/gui.h"
 void framebuffer_size_callback(GLFWwindow*, int, int);
@@ -112,7 +113,6 @@ int main() {
                 show_another_window = false;
             ImGui::End();
         }
-
         ImGui::Render();
         int display_width, display_height;
         glfwGetFramebufferSize(window, &display_width, &display_height);
@@ -124,6 +124,9 @@ int main() {
 
         glfwSwapBuffers(window);
         glfwPollEvents();
+//        std::vector<int> ints;
+//        ints.push_back(2);
+
     }
 
     ImGui_ImplOpenGL3_Shutdown();

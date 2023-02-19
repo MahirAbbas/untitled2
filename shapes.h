@@ -15,7 +15,9 @@
 namespace shapes {
     class sphere {
     public:
-        sphere(){}
+        sphere(Vector cs){
+            this->cs = cs;
+        }
         double intensity;
         float red = 1;
         float green = 1;
@@ -27,7 +29,7 @@ namespace shapes {
         // p is any point on the sphere surface
         // r = radius of sphere (scalar)
         // Cs - origin of the sphere
-        Vector cs = Vector(0, -100, 0);
+        Vector cs;
         double r = 100;
         Vector p;
         double t = 0;
@@ -35,7 +37,6 @@ namespace shapes {
 //        Vector v = o-cs;
         Vector v;
         Vector Light = Vector(150, 150, -250);
-
         double a;
         double b;
         double c;

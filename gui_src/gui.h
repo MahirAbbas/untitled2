@@ -4,7 +4,7 @@
 
 #ifndef UNTITLED2_GUI_H
 #define UNTITLED2_GUI_H
-
+#include <vector>
 #include "../imgui/imgui.h"
 #include "../imgui/backends/imgui_impl_opengl3_loader.h"
 #include "../imgui/backends/imgui_impl_opengl3.h"
@@ -14,6 +14,7 @@
 #include <string>
 #include "../Vector.h"
 #include "../shapes.h"
+#include <stdlib.h>
 class gui
 {
 private:
@@ -25,9 +26,9 @@ private:
 public:
     ImVec2 imagesize = ImVec2(width, height);
     GLuint texture = NULL;
-    unsigned char bluepixel[4] = {0,0,255,255};
+//    unsigned char bluepixel[4] = {0,0,255,255};
 
-    unsigned char getPixel() {return bluepixel[4];}
+//    unsigned char getPixel() {return bluepixel[4];}
     gui()
     {
         r = g = b = 0.f;
@@ -57,10 +58,10 @@ public:
     }
 
 
-    GLuint GetTexture() { return texture; }
+//    GLuint GetTexture() { return texture; }
 //    ImTextureID GetTextureID() {return texture;}
-    int GetTextureWidth() { return width; }
-    int GetTextureHeight() { return height; }
+//    int GetTextureWidth() { return width; }
+//    int GetTextureHeight() { return height; }
 //    int SetTexture() {this.texture}
 
     const std::string GetText() { return text; }
@@ -70,20 +71,27 @@ public:
         UpdateTexture();
     }
 
-    void bluePixel()
-    {
-        glGenTextures(1, &texture);
-        glBindTexture(GL_TEXTURE_2D, texture);
-        glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, 1, 1, 0, GL_RGBA, GL_UNSIGNED_BYTE,bluepixel);
-        glBindTexture(GL_TEXTURE_2D, 0);
-        ImGui::Image(reinterpret_cast<void *>(texture), imagesize);
-    }
-    shapes::sphere sphere;
+//    void bluePixel()
+//    {
+//        glGenTextures(1, &texture);
+//        glBindTexture(GL_TEXTURE_2D, texture);
+//        glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, 1, 1, 0, GL_RGBA, GL_UNSIGNED_BYTE,bluepixel);
+//        glBindTexture(GL_TEXTURE_2D, 0);
+//        ImGui::Image(reinterpret_cast<void *>(texture), imagesize);
+//    }
+    shapes::sphere sphere = shapes::sphere(Vector(0,-100,0));
+    shapes::sphere sphere2 = shapes::sphere(Vector(250,200,25));
+    std::vector<shapes::sphere> spheres;
+
+
+//    spheres.push_back(1);
+
+
 private:
     void UpdateText() {
         text = "red:=" + std::to_string(r) + " green:=" + std::to_string(g) + " blue:=" + std::to_string(b);
     }
-    Vector Light= Vector(150,150,-250);
+//    Vector Light= Vector(150,150,-250);
     void UpdateTexture() {
         const int w = width/2, h = height/2;
 
@@ -95,23 +103,48 @@ private:
         if (ImGui::SliderFloat("light y", &sphere.Light.y, -height, height));
         if (ImGui::SliderFloat("light z", &sphere.Light.z, -height, height));
 
+
         unsigned char* pixelData = new unsigned char [width * height * 4];
+
 //        unsigned char* pixelData2 = new unsigned char [width * height * 4];
 //        unsigned char* pixelData3 = pixelData + pixelData2;
 //        unsigned char B = (unsigned char)255 * b, R = (unsigned char)255 * r, G = (unsigned char)255 * g;
+
         for (int y = 0; y < height; y++)
-            for (int x = 0; x < width; x++) {
+        {
+            for (int x = 0; x < width; x++)
+            {
                 int index = y * width * 4 + x * 4;
                 // Line Origin
-                sphere.setOrigin(Vector(x-w,y-h,0));
-                sphere.v = sphere.o-sphere.cs;
+                sphere.setOrigin(Vector(x - w, y - h, 0));
+                sphere.v = sphere.o - sphere.cs;
                 sphere.calculations();
-                pixelData[index] = sphere.intensity*sphere.red;           // R
-                pixelData[index + 1] = sphere.intensity*sphere.green;       // G
-                pixelData[index + 2] = sphere.intensity*sphere.blue;       // B
+                pixelData[index] = sphere.intensity * sphere.red;           // R
+                pixelData[index + 1] = sphere.intensity * sphere.green;       // G
+                pixelData[index + 2] = sphere.intensity * sphere.blue;       // B
                 pixelData[index + 3] = 255;     // A
 //                std::cout << pixelData[index] << "\n";
+
             }
+        }
+//        for (int y = 0; y < height; y++)
+//        {
+//            for (int x = 0; x < width; x++)
+//            {
+//                int index = y * width * 4 + x * 4;
+//                // Line Origin
+//                sphere2.setOrigin(Vector(x - w, y - h, 0));
+//                sphere2.v = sphere2.o - sphere2.cs;
+//                sphere2.calculations();
+//                pixelData[index] = sphere2.intensity * sphere2.red;           // R
+//                pixelData[index + 1] = sphere2.intensity * sphere2.green;       // G
+//                pixelData[index + 2] = sphere2.intensity * sphere2.blue;       // B
+//                pixelData[index + 3] = 255;     // A
+////                std::cout << pixelData[index] << "\n";
+//
+//            }
+//        }
+
         glGenTextures(1, &texture);
         glBindTexture(GL_TEXTURE_2D, texture);
         glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
