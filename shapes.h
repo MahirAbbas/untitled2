@@ -49,6 +49,8 @@ namespace shapes {
         {
             o = screen;
         }
+
+
         void calculations()
         {
 
@@ -75,6 +77,27 @@ namespace shapes {
             }
             if (intensity > 255) intensity = 255;
 
+        }
+
+        int* renderSphere(int width, int height, int* ptr)
+        {
+            int* arr = new int[width * height * 4];
+
+            for (int y = 0; y < height; y++)
+            {
+                for (int x = 0; x < width; x++)
+                {
+                    int index = y * width * 4 * + x * 4;
+                    this->o = Vector(x-(width/2), y-(height/2),0);
+                    this->v = o-cs;
+                    calculations();
+                    arr[index] = intensity * red;           // R
+                    arr[index + 1] = intensity * green;       // G
+                    arr[index + 2] = intensity * blue;       // B
+                    arr[index + 3] = 255;     // A
+                }
+            }
+            return arr;
         }
     };
 }
