@@ -11,6 +11,7 @@
 #include "imgui/backends/imgui_impl_glfw.h"
 #include <GLFW/glfw3.h>
 #include <GL/gl.h>
+
 //TODO VECTOR D AS CONSTRUCTOR, AND Cs, Origin etc
 namespace shapes {
     class sphere {
@@ -57,17 +58,21 @@ namespace shapes {
             c = v.dot(v)-(r*r);
             disc = (b*b)-4*a*c;
             t = (-b- sqrt(disc))/2*a;
+            p = o+d*t;
             n = p-cs;
             n.normalise();
-            p = o+d*t;
             Lv = Light-p;
+            if (disc < 0) intensity = 0;
+            else
+            {
+                intensity = 1;
+            }
 //            Lv.normalise();
 //            Why doesn't normalise work?
             dp = Lv.dot(n);
             if (dp < 0)
             {
                 intensity =0;
-
             }
             else
             {
