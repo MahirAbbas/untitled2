@@ -1,0 +1,5 @@
+*.o
+*.log
+*log
+*.json
+cmake-build-debug

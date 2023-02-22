@@ -57,18 +57,18 @@ namespace shapes {
             b = 2*v.dot(d);
             c = v.dot(v)-(r*r);
             disc = (b*b)-4*a*c;
-            t = (-b- sqrt(disc))/2*a;
-            p = o+d*t;
-            n = p-cs;
-            n.normalise();
-            Lv = Light-p;
             if (disc < 0) intensity = 0;
             else
             {
                 intensity = 1;
             }
+            t = (-b- sqrt(disc))/2*a;
+            p = o+d*t;
+            Lv = Light-p;
 //            Lv.normalise();
 //            Why doesn't normalise work?
+            n = p-cs;
+            n.normalise();
             dp = Lv.dot(n);
             if (dp < 0)
             {
