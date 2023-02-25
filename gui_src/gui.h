@@ -127,53 +127,13 @@ private:
 
             }
         }
-//        for (int y = 0; y < height; y++)
-//        {
-//            for (int x = 0; x < width; x++)
-//            {
-//                int index = y * width * 4 + x * 4;
-//                // Line Origin
-//                sphere2.setOrigin(Vector(x - w, y - h, 0));
-//                sphere2.v = sphere2.o - sphere2.cs;
-//                sphere2.calculations();
-//                pixelData[index] = sphere2.intensity * sphere2.red;           // R
-//                pixelData[index + 1] = sphere2.intensity * sphere2.green;       // G
-//                pixelData[index + 2] = sphere2.intensity * sphere2.blue;       // B
-//                pixelData[index + 3] = 255;     // A
-////                std::cout << pixelData[index] << "\n";
-//
-//            }
-//        }
-
         glGenTextures(1, &texture);
         glBindTexture(GL_TEXTURE_2D, texture);
         glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
         glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
-//        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP, GLFW_REPEAT);
-//        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
         glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, width, height, 0, GL_RGBA, GL_UNSIGNED_BYTE,pixelData);
         glBindTexture(GL_TEXTURE_2D, 0);
         ImGui::Image(reinterpret_cast<void *>(texture), imagesize);
     }
-
-
 };
-
 #endif //UNTITLED2_GUI_H
-//void UpdateTexture() {
-//    unsigned char* pixelData = new unsigned char [width * height * 4];
-//    unsigned char B = (unsigned char)255 * b, R = (unsigned char)255 * r, G = (unsigned char)255 * g;
-//    for (int y = 0; y < height; y++)
-//        for (int x = 0; x < width; x++) {
-//            int index = y * width * 4 + x * 4;
-//            pixelData[index] = B;           // B
-//            pixelData[index + 1] = G;       // G
-//            pixelData[index + 2] = R;       // R
-//            pixelData[index + 3] = 255;     // A
-//        }
-//    glGenTextures(1, &texture);
-//    glBindTexture(GL_TEXTURE_2D, texture);
-//    glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, 1, 1, 0, GL_RGBA, GL_UNSIGNED_BYTE,pixelData);
-//    glBindTexture(GL_TEXTURE_2D, 0);
-//    ImGui::Image(reinterpret_cast<void *>(texture), imagesize);
-//}
