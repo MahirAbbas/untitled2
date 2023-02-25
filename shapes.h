@@ -20,6 +20,7 @@ namespace shapes {
             this->cs = cs;
         }
         double intensity;
+        Vector ambient_coefficient;
         float red = 1;
         float green = 1;
         float blue = 1;
@@ -69,7 +70,14 @@ namespace shapes {
 //            Why doesn't normalise work?
             n = p-cs;
             n.normalise();
+
+//            dp = (Light * Lv.dot(n)).dot(Vector(2,2,2));
+            //including ambient illumination
+            // dp += AmbientIlluminationCoefficent * Light Source RGB
+
             dp = Lv.dot(n);
+
+
             if (dp < 0)
             {
                 intensity =0;

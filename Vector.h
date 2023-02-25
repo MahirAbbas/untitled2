@@ -9,6 +9,7 @@
 class Vector {
 public:
     float x, y, z;
+    float r, g, b;
 
     Vector() {}
     Vector(double x, double y, double z)
@@ -54,6 +55,19 @@ public:
     }
     void print() {
         std::cout << "x=" << x << ", y=" << y << ", z=" << z << "\n";
+    }
+};
+
+class light
+{
+    Vector light;
+    float r,g,b;
+
+    void setAmbientCoefficient(float r, float g, float b)
+    {
+        this-> r = r;
+        this-> g = g;
+        this-> b = b;
     }
 };
 #endif //UNTITLED2_VECTOR_H
