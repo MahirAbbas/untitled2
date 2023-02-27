@@ -1,0 +1,6 @@
+#add_subdirectory(Intersection)
+#add_subdirectory(Light)
+#add_subdirectory(Material)
+#add_subdirectory(Ray)
+add_subdirectory(Sphere)
+add_subdirectory(Vector)

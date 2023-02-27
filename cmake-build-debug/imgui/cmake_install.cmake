@@ -1,4 +1,4 @@
-# Install script for directory: /home/mahir/CLionProjects/untitled2/imgui
+# Install script for directory: /home/mahir/CLionProjects/ray/imgui
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
