@@ -47,6 +47,11 @@
             o = screen;
         }
         void calculations();
+
+
+        void intersects();
+
+//        void
     };
 
 #endif //UNTITLED2_SPHERE_H

@@ -12,7 +12,7 @@ class Light {
         Vector direction;
 
 
-        void setAmbientCoefficient(float r, float g, float b)
+        void setLightColour(float r, float g, float b)
         {
             this-> r = r;
             this-> g = g;

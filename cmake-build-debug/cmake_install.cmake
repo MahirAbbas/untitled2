@@ -69,7 +69,7 @@ endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for the subdirectory.
-  include("/home/mahir/CLionProjects/ray/cmake-build-debug/src/gui_src/cmake_install.cmake")
+  include("/home/mahir/CLionProjects/ray/cmake-build-debug/src/Gui_src/cmake_install.cmake")
 endif()
 
 if(CMAKE_INSTALL_COMPONENT)

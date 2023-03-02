@@ -1,1 +1,1 @@
-add_library(Scene Scene.cpp)
+add_library(Scene Scene.cpp Scene.h)

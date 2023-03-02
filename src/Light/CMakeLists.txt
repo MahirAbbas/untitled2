@@ -1,1 +1,1 @@
-add_library(Light Light.cpp)
+add_library(Light Light.h Light.cpp)

@@ -1,1 +1,0 @@
-add_library(gui gui.h gui.cpp)

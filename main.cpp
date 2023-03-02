@@ -7,7 +7,7 @@
 //#include "glad.h"
 #include <stdlib.h>
 #include "GLFW/glfw3.h"
-#include "src/gui_src/gui.h"
+#include "src/Gui_src/Gui.h"
 void framebuffer_size_callback(GLFWwindow*, int, int);
 void processInput(GLFWwindow *window);
 
@@ -42,7 +42,7 @@ int main() {
         ImGui::NewFrame();
 
         {
-            static gui myGui;
+            static Gui myGui;
             static float red,green, blue;
             ImGui::Begin("Test2", NULL, ImGuiWindowFlags_AlwaysAutoResize);
             ImGui::PushItemWidth(200) ;

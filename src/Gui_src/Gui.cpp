@@ -6,15 +6,16 @@
 #include "../../imgui/backends/imgui_impl_opengl3_loader.h"
 #include "../../imgui/backends/imgui_impl_opengl3.h"
 #include "../../imgui/backends/imgui_impl_glfw.h"
-#include "gui.h"
+#include "Gui.h"
 #include <GLFW/glfw3.h>
 #include "../Sphere/Sphere.h"
 
 
-void gui::UpdateTexture() {
+void Gui::UpdateTexture() {
 
     Sphere sphere = Sphere(Vector(0, -100, 0));
     const int w = width / 2, h = height / 2;
+    ImVec2 imagesize = ImVec2(width, height);
 
     float spherex = 0;
     if (ImGui::SliderFloat("Sphere x", &sphere.Cs.x, -height, height));

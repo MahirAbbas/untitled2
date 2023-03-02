@@ -21,6 +21,6 @@
 /home/mahir/CLionProjects/ray/cmake-build-debug/src/Scene/CMakeFiles/Scene.dir
 /home/mahir/CLionProjects/ray/cmake-build-debug/src/Scene/CMakeFiles/edit_cache.dir
 /home/mahir/CLionProjects/ray/cmake-build-debug/src/Scene/CMakeFiles/rebuild_cache.dir
-/home/mahir/CLionProjects/ray/cmake-build-debug/src/gui_src/CMakeFiles/gui.dir
-/home/mahir/CLionProjects/ray/cmake-build-debug/src/gui_src/CMakeFiles/edit_cache.dir
-/home/mahir/CLionProjects/ray/cmake-build-debug/src/gui_src/CMakeFiles/rebuild_cache.dir
+/home/mahir/CLionProjects/ray/cmake-build-debug/src/Gui_src/CMakeFiles/Gui.dir
+/home/mahir/CLionProjects/ray/cmake-build-debug/src/Gui_src/CMakeFiles/edit_cache.dir
+/home/mahir/CLionProjects/ray/cmake-build-debug/src/Gui_src/CMakeFiles/rebuild_cache.dir

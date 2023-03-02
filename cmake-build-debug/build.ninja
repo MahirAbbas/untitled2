@@ -47,7 +47,7 @@ cmake_ninja_workdir = /home/mahir/CLionProjects/ray/cmake-build-debug/
 #############################################
 # Order-only phony target for untitled2
 
-build cmake_object_order_depends_target_untitled2: phony || cmake_object_order_depends_target_Scene cmake_object_order_depends_target_Sphere cmake_object_order_depends_target_Vector cmake_object_order_depends_target_backends cmake_object_order_depends_target_gui cmake_object_order_depends_target_imgui
+build cmake_object_order_depends_target_untitled2: phony || cmake_object_order_depends_target_Gui cmake_object_order_depends_target_Scene cmake_object_order_depends_target_Sphere cmake_object_order_depends_target_Vector cmake_object_order_depends_target_backends cmake_object_order_depends_target_imgui
 
 build CMakeFiles/untitled2.dir/imgui/glad.c.o: C_COMPILER__untitled2_Debug /home/mahir/CLionProjects/ray/imgui/glad.c || cmake_object_order_depends_target_untitled2
   DEP_FILE = CMakeFiles/untitled2.dir/imgui/glad.c.o.d
@@ -69,9 +69,9 @@ build CMakeFiles/untitled2.dir/main.cpp.o: CXX_COMPILER__untitled2_Debug /home/m
 #############################################
 # Link the executable untitled2
 
-build untitled2: CXX_EXECUTABLE_LINKER__untitled2_Debug CMakeFiles/untitled2.dir/imgui/glad.c.o CMakeFiles/untitled2.dir/main.cpp.o | imgui/libimgui.a imgui/backends/libbackends.a src/gui_src/libgui.a src/Sphere/libSphere.a src/Vector/libVector.a src/Scene/libScene.a || imgui/backends/libbackends.a imgui/libimgui.a src/Scene/libScene.a src/Sphere/libSphere.a src/Vector/libVector.a src/gui_src/libgui.a
+build untitled2: CXX_EXECUTABLE_LINKER__untitled2_Debug CMakeFiles/untitled2.dir/imgui/glad.c.o CMakeFiles/untitled2.dir/main.cpp.o | imgui/libimgui.a imgui/backends/libbackends.a src/Gui_src/libGui.a src/Sphere/libSphere.a src/Vector/libVector.a src/Scene/libScene.a || imgui/backends/libbackends.a imgui/libimgui.a src/Gui_src/libGui.a src/Scene/libScene.a src/Sphere/libSphere.a src/Vector/libVector.a
   FLAGS = -g
-  LINK_LIBRARIES = -lglfw  -lGL  -ldl  -lpthread  imgui/libimgui.a  imgui/backends/libbackends.a  src/gui_src/libgui.a  src/Sphere/libSphere.a  src/Vector/libVector.a  src/Scene/libScene.a
+  LINK_LIBRARIES = -lglfw  -lGL  -ldl  -lpthread  imgui/libimgui.a  imgui/backends/libbackends.a  src/Gui_src/libGui.a  src/Sphere/libSphere.a  src/Vector/libVector.a  src/Scene/libScene.a
   OBJECT_DIR = CMakeFiles/untitled2.dir
   POST_BUILD = :
   PRE_LINK = :
@@ -519,61 +519,63 @@ build src/Scene/rebuild_cache: phony src/Scene/CMakeFiles/rebuild_cache.util
 # =============================================================================
 
 # =============================================================================
-# Object build statements for STATIC_LIBRARY target gui
+# Object build statements for STATIC_LIBRARY target Gui
 
 
 #############################################
-# Order-only phony target for gui
+# Order-only phony target for Gui
 
-build cmake_object_order_depends_target_gui: phony || src/gui_src/CMakeFiles/gui.dir
+build cmake_object_order_depends_target_Gui: phony || src/Gui_src/CMakeFiles/Gui.dir
 
-build src/gui_src/CMakeFiles/gui.dir/gui.cpp.o: CXX_COMPILER__gui_Debug /home/mahir/CLionProjects/ray/src/gui_src/gui.cpp || cmake_object_order_depends_target_gui
-  DEP_FILE = src/gui_src/CMakeFiles/gui.dir/gui.cpp.o.d
+build src/Gui_src/CMakeFiles/Gui.dir/Gui.cpp.o: CXX_COMPILER__Gui_Debug /home/mahir/CLionProjects/ray/src/Gui_src/Gui.cpp || cmake_object_order_depends_target_Gui
+  DEP_FILE = src/Gui_src/CMakeFiles/Gui.dir/Gui.cpp.o.d
   FLAGS = -g -fdiagnostics-color=always
-  OBJECT_DIR = src/gui_src/CMakeFiles/gui.dir
-  OBJECT_FILE_DIR = src/gui_src/CMakeFiles/gui.dir
+  OBJECT_DIR = src/Gui_src/CMakeFiles/Gui.dir
+  OBJECT_FILE_DIR = src/Gui_src/CMakeFiles/Gui.dir
 
 
 # =============================================================================
-# Link build statements for STATIC_LIBRARY target gui
+# Link build statements for STATIC_LIBRARY target Gui
 
 
 #############################################
-# Link the static library src/gui_src/libgui.a
+# Link the static library src/Gui_src/libGui.a
 
-build src/gui_src/libgui.a: CXX_STATIC_LIBRARY_LINKER__gui_Debug src/gui_src/CMakeFiles/gui.dir/gui.cpp.o
+build src/Gui_src/libGui.a: CXX_STATIC_LIBRARY_LINKER__Gui_Debug src/Gui_src/CMakeFiles/Gui.dir/Gui.cpp.o
   LANGUAGE_COMPILE_FLAGS = -g
-  OBJECT_DIR = src/gui_src/CMakeFiles/gui.dir
+  OBJECT_DIR = src/Gui_src/CMakeFiles/Gui.dir
   POST_BUILD = :
   PRE_LINK = :
-  TARGET_FILE = src/gui_src/libgui.a
-  TARGET_PDB = gui.a.dbg
+  TARGET_FILE = src/Gui_src/libGui.a
+  TARGET_PDB = Gui.a.dbg
 
 
 #############################################
 # Utility command for edit_cache
 
-build src/gui_src/CMakeFiles/edit_cache.util: CUSTOM_COMMAND
-  COMMAND = cd /home/mahir/CLionProjects/ray/cmake-build-debug/src/gui_src && /home/mahir/Applications/clion-2022.3.2/bin/cmake/linux/x64/bin/cmake -E echo No\ interactive\ CMake\ dialog\ available.
+build src/Gui_src/CMakeFiles/edit_cache.util: CUSTOM_COMMAND
+  COMMAND = cd /home/mahir/CLionProjects/ray/cmake-build-debug/src/Gui_src && /home/mahir/Applications/clion-2022.3.2/bin/cmake/linux/x64/bin/cmake -E echo No\ interactive\ CMake\ dialog\ available.
   DESC = No interactive CMake dialog available...
   restat = 1
 
-build src/gui_src/edit_cache: phony src/gui_src/CMakeFiles/edit_cache.util
+build src/Gui_src/edit_cache: phony src/Gui_src/CMakeFiles/edit_cache.util
 
 
 #############################################
 # Utility command for rebuild_cache
 
-build src/gui_src/CMakeFiles/rebuild_cache.util: CUSTOM_COMMAND
-  COMMAND = cd /home/mahir/CLionProjects/ray/cmake-build-debug/src/gui_src && /home/mahir/Applications/clion-2022.3.2/bin/cmake/linux/x64/bin/cmake --regenerate-during-build -S/home/mahir/CLionProjects/ray -B/home/mahir/CLionProjects/ray/cmake-build-debug
+build src/Gui_src/CMakeFiles/rebuild_cache.util: CUSTOM_COMMAND
+  COMMAND = cd /home/mahir/CLionProjects/ray/cmake-build-debug/src/Gui_src && /home/mahir/Applications/clion-2022.3.2/bin/cmake/linux/x64/bin/cmake --regenerate-during-build -S/home/mahir/CLionProjects/ray -B/home/mahir/CLionProjects/ray/cmake-build-debug
   DESC = Running CMake to regenerate build system...
   pool = console
   restat = 1
 
-build src/gui_src/rebuild_cache: phony src/gui_src/CMakeFiles/rebuild_cache.util
+build src/Gui_src/rebuild_cache: phony src/Gui_src/CMakeFiles/rebuild_cache.util
 
 # =============================================================================
 # Target aliases.
+
+build Gui: phony src/Gui_src/libGui.a
 
 build Light: phony src/Light/libLight.a
 
@@ -585,9 +587,9 @@ build Vector: phony src/Vector/libVector.a
 
 build backends: phony imgui/backends/libbackends.a
 
-build gui: phony src/gui_src/libgui.a
-
 build imgui: phony imgui/libimgui.a
+
+build libGui.a: phony src/Gui_src/libGui.a
 
 build libLight.a: phony src/Light/libLight.a
 
@@ -599,8 +601,6 @@ build libVector.a: phony src/Vector/libVector.a
 
 build libbackends.a: phony imgui/backends/libbackends.a
 
-build libgui.a: phony src/gui_src/libgui.a
-
 build libimgui.a: phony imgui/libimgui.a
 
 # =============================================================================
@@ -611,7 +611,7 @@ build libimgui.a: phony imgui/libimgui.a
 #############################################
 # Folder: /home/mahir/CLionProjects/ray/cmake-build-debug
 
-build all: phony untitled2 imgui/all imgui/backends/all src/all src/Light/all src/Scene/all src/gui_src/all
+build all: phony untitled2 imgui/all imgui/backends/all src/all src/Light/all src/Scene/all src/Gui_src/all
 
 # =============================================================================
 
@@ -633,6 +633,13 @@ build imgui/backends/all: phony imgui/backends/libbackends.a
 # Folder: /home/mahir/CLionProjects/ray/cmake-build-debug/src
 
 build src/all: phony src/Sphere/all src/Vector/all
+
+# =============================================================================
+
+#############################################
+# Folder: /home/mahir/CLionProjects/ray/cmake-build-debug/src/Gui_src
+
+build src/Gui_src/all: phony src/Gui_src/libGui.a
 
 # =============================================================================
 
@@ -663,27 +670,20 @@ build src/Sphere/all: phony src/Sphere/libSphere.a
 build src/Vector/all: phony src/Vector/libVector.a
 
 # =============================================================================
-
-#############################################
-# Folder: /home/mahir/CLionProjects/ray/cmake-build-debug/src/gui_src
-
-build src/gui_src/all: phony src/gui_src/libgui.a
-
-# =============================================================================
 # Built-in targets
 
 
 #############################################
 # Re-run CMake if any of its inputs changed.
 
-build build.ninja: RERUN_CMAKE | /home/mahir/Applications/clion-2022.3.2/bin/cmake/linux/x64/share/cmake-3.24/Modules/CMakeCInformation.cmake /home/mahir/Applications/clion-2022.3.2/bin/cmake/linux/x64/share/cmake-3.24/Modules/CMakeCXXInformation.cmake /home/mahir/Applications/clion-2022.3.2/bin/cmake/linux/x64/share/cmake-3.24/Modules/CMakeCommonLanguageInclude.cmake /home/mahir/Applications/clion-2022.3.2/bin/cmake/linux/x64/share/cmake-3.24/Modules/CMakeGenericSystem.cmake /home/mahir/Applications/clion-2022.3.2/bin/cmake/linux/x64/share/cmake-3.24/Modules/CMakeInitializeConfigs.cmake /home/mahir/Applications/clion-2022.3.2/bin/cmake/linux/x64/share/cmake-3.24/Modules/CMakeLanguageInformation.cmake /home/mahir/Applications/clion-2022.3.2/bin/cmake/linux/x64/share/cmake-3.24/Modules/CMakeSystemSpecificInformation.cmake /home/mahir/Applications/clion-2022.3.2/bin/cmake/linux/x64/share/cmake-3.24/Modules/CMakeSystemSpecificInitialize.cmake /home/mahir/Applications/clion-2022.3.2/bin/cmake/linux/x64/share/cmake-3.24/Modules/Compiler/CMakeCommonCompilerMacros.cmake /home/mahir/Applications/clion-2022.3.2/bin/cmake/linux/x64/share/cmake-3.24/Modules/Compiler/GNU-C.cmake /home/mahir/Applications/clion-2022.3.2/bin/cmake/linux/x64/share/cmake-3.24/Modules/Compiler/GNU-CXX.cmake /home/mahir/Applications/clion-2022.3.2/bin/cmake/linux/x64/share/cmake-3.24/Modules/Compiler/GNU.cmake /home/mahir/Applications/clion-2022.3.2/bin/cmake/linux/x64/share/cmake-3.24/Modules/Platform/Linux-GNU-C.cmake /home/mahir/Applications/clion-2022.3.2/bin/cmake/linux/x64/share/cmake-3.24/Modules/Platform/Linux-GNU-CXX.cmake /home/mahir/Applications/clion-2022.3.2/bin/cmake/linux/x64/share/cmake-3.24/Modules/Platform/Linux-GNU.cmake /home/mahir/Applications/clion-2022.3.2/bin/cmake/linux/x64/share/cmake-3.24/Modules/Platform/Linux.cmake /home/mahir/Applications/clion-2022.3.2/bin/cmake/linux/x64/share/cmake-3.24/Modules/Platform/UnixPaths.cmake /home/mahir/CLionProjects/ray/CMakeLists.txt /home/mahir/CLionProjects/ray/imgui/CMakeLists.txt /home/mahir/CLionProjects/ray/imgui/backends/CMakeLists.txt /home/mahir/CLionProjects/ray/src/CMakeLists.txt /home/mahir/CLionProjects/ray/src/Light/CMakeLists.txt /home/mahir/CLionProjects/ray/src/Scene/CMakeLists.txt /home/mahir/CLionProjects/ray/src/Sphere/CMakeLists.txt /home/mahir/CLionProjects/ray/src/Vector/CMakeLists.txt /home/mahir/CLionProjects/ray/src/gui_src/CMakeLists.txt CMakeCache.txt CMakeFiles/3.24.2/CMakeCCompiler.cmake CMakeFiles/3.24.2/CMakeCXXCompiler.cmake CMakeFiles/3.24.2/CMakeSystem.cmake
+build build.ninja: RERUN_CMAKE | /home/mahir/Applications/clion-2022.3.2/bin/cmake/linux/x64/share/cmake-3.24/Modules/CMakeCInformation.cmake /home/mahir/Applications/clion-2022.3.2/bin/cmake/linux/x64/share/cmake-3.24/Modules/CMakeCXXInformation.cmake /home/mahir/Applications/clion-2022.3.2/bin/cmake/linux/x64/share/cmake-3.24/Modules/CMakeCommonLanguageInclude.cmake /home/mahir/Applications/clion-2022.3.2/bin/cmake/linux/x64/share/cmake-3.24/Modules/CMakeGenericSystem.cmake /home/mahir/Applications/clion-2022.3.2/bin/cmake/linux/x64/share/cmake-3.24/Modules/CMakeInitializeConfigs.cmake /home/mahir/Applications/clion-2022.3.2/bin/cmake/linux/x64/share/cmake-3.24/Modules/CMakeLanguageInformation.cmake /home/mahir/Applications/clion-2022.3.2/bin/cmake/linux/x64/share/cmake-3.24/Modules/CMakeSystemSpecificInformation.cmake /home/mahir/Applications/clion-2022.3.2/bin/cmake/linux/x64/share/cmake-3.24/Modules/CMakeSystemSpecificInitialize.cmake /home/mahir/Applications/clion-2022.3.2/bin/cmake/linux/x64/share/cmake-3.24/Modules/Compiler/CMakeCommonCompilerMacros.cmake /home/mahir/Applications/clion-2022.3.2/bin/cmake/linux/x64/share/cmake-3.24/Modules/Compiler/GNU-C.cmake /home/mahir/Applications/clion-2022.3.2/bin/cmake/linux/x64/share/cmake-3.24/Modules/Compiler/GNU-CXX.cmake /home/mahir/Applications/clion-2022.3.2/bin/cmake/linux/x64/share/cmake-3.24/Modules/Compiler/GNU.cmake /home/mahir/Applications/clion-2022.3.2/bin/cmake/linux/x64/share/cmake-3.24/Modules/Platform/Linux-GNU-C.cmake /home/mahir/Applications/clion-2022.3.2/bin/cmake/linux/x64/share/cmake-3.24/Modules/Platform/Linux-GNU-CXX.cmake /home/mahir/Applications/clion-2022.3.2/bin/cmake/linux/x64/share/cmake-3.24/Modules/Platform/Linux-GNU.cmake /home/mahir/Applications/clion-2022.3.2/bin/cmake/linux/x64/share/cmake-3.24/Modules/Platform/Linux.cmake /home/mahir/Applications/clion-2022.3.2/bin/cmake/linux/x64/share/cmake-3.24/Modules/Platform/UnixPaths.cmake /home/mahir/CLionProjects/ray/CMakeLists.txt /home/mahir/CLionProjects/ray/imgui/CMakeLists.txt /home/mahir/CLionProjects/ray/imgui/backends/CMakeLists.txt /home/mahir/CLionProjects/ray/src/CMakeLists.txt /home/mahir/CLionProjects/ray/src/Gui_src/CMakeLists.txt /home/mahir/CLionProjects/ray/src/Light/CMakeLists.txt /home/mahir/CLionProjects/ray/src/Scene/CMakeLists.txt /home/mahir/CLionProjects/ray/src/Sphere/CMakeLists.txt /home/mahir/CLionProjects/ray/src/Vector/CMakeLists.txt CMakeCache.txt CMakeFiles/3.24.2/CMakeCCompiler.cmake CMakeFiles/3.24.2/CMakeCXXCompiler.cmake CMakeFiles/3.24.2/CMakeSystem.cmake
   pool = console
 
 
 #############################################
 # A missing CMake input file is not an error.
 
-build /home/mahir/Applications/clion-2022.3.2/bin/cmake/linux/x64/share/cmake-3.24/Modules/CMakeCInformation.cmake /home/mahir/Applications/clion-2022.3.2/bin/cmake/linux/x64/share/cmake-3.24/Modules/CMakeCXXInformation.cmake /home/mahir/Applications/clion-2022.3.2/bin/cmake/linux/x64/share/cmake-3.24/Modules/CMakeCommonLanguageInclude.cmake /home/mahir/Applications/clion-2022.3.2/bin/cmake/linux/x64/share/cmake-3.24/Modules/CMakeGenericSystem.cmake /home/mahir/Applications/clion-2022.3.2/bin/cmake/linux/x64/share/cmake-3.24/Modules/CMakeInitializeConfigs.cmake /home/mahir/Applications/clion-2022.3.2/bin/cmake/linux/x64/share/cmake-3.24/Modules/CMakeLanguageInformation.cmake /home/mahir/Applications/clion-2022.3.2/bin/cmake/linux/x64/share/cmake-3.24/Modules/CMakeSystemSpecificInformation.cmake /home/mahir/Applications/clion-2022.3.2/bin/cmake/linux/x64/share/cmake-3.24/Modules/CMakeSystemSpecificInitialize.cmake /home/mahir/Applications/clion-2022.3.2/bin/cmake/linux/x64/share/cmake-3.24/Modules/Compiler/CMakeCommonCompilerMacros.cmake /home/mahir/Applications/clion-2022.3.2/bin/cmake/linux/x64/share/cmake-3.24/Modules/Compiler/GNU-C.cmake /home/mahir/Applications/clion-2022.3.2/bin/cmake/linux/x64/share/cmake-3.24/Modules/Compiler/GNU-CXX.cmake /home/mahir/Applications/clion-2022.3.2/bin/cmake/linux/x64/share/cmake-3.24/Modules/Compiler/GNU.cmake /home/mahir/Applications/clion-2022.3.2/bin/cmake/linux/x64/share/cmake-3.24/Modules/Platform/Linux-GNU-C.cmake /home/mahir/Applications/clion-2022.3.2/bin/cmake/linux/x64/share/cmake-3.24/Modules/Platform/Linux-GNU-CXX.cmake /home/mahir/Applications/clion-2022.3.2/bin/cmake/linux/x64/share/cmake-3.24/Modules/Platform/Linux-GNU.cmake /home/mahir/Applications/clion-2022.3.2/bin/cmake/linux/x64/share/cmake-3.24/Modules/Platform/Linux.cmake /home/mahir/Applications/clion-2022.3.2/bin/cmake/linux/x64/share/cmake-3.24/Modules/Platform/UnixPaths.cmake /home/mahir/CLionProjects/ray/CMakeLists.txt /home/mahir/CLionProjects/ray/imgui/CMakeLists.txt /home/mahir/CLionProjects/ray/imgui/backends/CMakeLists.txt /home/mahir/CLionProjects/ray/src/CMakeLists.txt /home/mahir/CLionProjects/ray/src/Light/CMakeLists.txt /home/mahir/CLionProjects/ray/src/Scene/CMakeLists.txt /home/mahir/CLionProjects/ray/src/Sphere/CMakeLists.txt /home/mahir/CLionProjects/ray/src/Vector/CMakeLists.txt /home/mahir/CLionProjects/ray/src/gui_src/CMakeLists.txt CMakeCache.txt CMakeFiles/3.24.2/CMakeCCompiler.cmake CMakeFiles/3.24.2/CMakeCXXCompiler.cmake CMakeFiles/3.24.2/CMakeSystem.cmake: phony
+build /home/mahir/Applications/clion-2022.3.2/bin/cmake/linux/x64/share/cmake-3.24/Modules/CMakeCInformation.cmake /home/mahir/Applications/clion-2022.3.2/bin/cmake/linux/x64/share/cmake-3.24/Modules/CMakeCXXInformation.cmake /home/mahir/Applications/clion-2022.3.2/bin/cmake/linux/x64/share/cmake-3.24/Modules/CMakeCommonLanguageInclude.cmake /home/mahir/Applications/clion-2022.3.2/bin/cmake/linux/x64/share/cmake-3.24/Modules/CMakeGenericSystem.cmake /home/mahir/Applications/clion-2022.3.2/bin/cmake/linux/x64/share/cmake-3.24/Modules/CMakeInitializeConfigs.cmake /home/mahir/Applications/clion-2022.3.2/bin/cmake/linux/x64/share/cmake-3.24/Modules/CMakeLanguageInformation.cmake /home/mahir/Applications/clion-2022.3.2/bin/cmake/linux/x64/share/cmake-3.24/Modules/CMakeSystemSpecificInformation.cmake /home/mahir/Applications/clion-2022.3.2/bin/cmake/linux/x64/share/cmake-3.24/Modules/CMakeSystemSpecificInitialize.cmake /home/mahir/Applications/clion-2022.3.2/bin/cmake/linux/x64/share/cmake-3.24/Modules/Compiler/CMakeCommonCompilerMacros.cmake /home/mahir/Applications/clion-2022.3.2/bin/cmake/linux/x64/share/cmake-3.24/Modules/Compiler/GNU-C.cmake /home/mahir/Applications/clion-2022.3.2/bin/cmake/linux/x64/share/cmake-3.24/Modules/Compiler/GNU-CXX.cmake /home/mahir/Applications/clion-2022.3.2/bin/cmake/linux/x64/share/cmake-3.24/Modules/Compiler/GNU.cmake /home/mahir/Applications/clion-2022.3.2/bin/cmake/linux/x64/share/cmake-3.24/Modules/Platform/Linux-GNU-C.cmake /home/mahir/Applications/clion-2022.3.2/bin/cmake/linux/x64/share/cmake-3.24/Modules/Platform/Linux-GNU-CXX.cmake /home/mahir/Applications/clion-2022.3.2/bin/cmake/linux/x64/share/cmake-3.24/Modules/Platform/Linux-GNU.cmake /home/mahir/Applications/clion-2022.3.2/bin/cmake/linux/x64/share/cmake-3.24/Modules/Platform/Linux.cmake /home/mahir/Applications/clion-2022.3.2/bin/cmake/linux/x64/share/cmake-3.24/Modules/Platform/UnixPaths.cmake /home/mahir/CLionProjects/ray/CMakeLists.txt /home/mahir/CLionProjects/ray/imgui/CMakeLists.txt /home/mahir/CLionProjects/ray/imgui/backends/CMakeLists.txt /home/mahir/CLionProjects/ray/src/CMakeLists.txt /home/mahir/CLionProjects/ray/src/Gui_src/CMakeLists.txt /home/mahir/CLionProjects/ray/src/Light/CMakeLists.txt /home/mahir/CLionProjects/ray/src/Scene/CMakeLists.txt /home/mahir/CLionProjects/ray/src/Sphere/CMakeLists.txt /home/mahir/CLionProjects/ray/src/Vector/CMakeLists.txt CMakeCache.txt CMakeFiles/3.24.2/CMakeCCompiler.cmake CMakeFiles/3.24.2/CMakeCXXCompiler.cmake CMakeFiles/3.24.2/CMakeSystem.cmake: phony
 
 
 #############################################
