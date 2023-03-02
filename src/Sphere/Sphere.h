@@ -51,6 +51,8 @@
 
         void intersects();
 
+        void calculatePhongReflectuin();
+
 //        void
     };
 

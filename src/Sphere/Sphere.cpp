@@ -39,3 +39,9 @@ void Sphere::calculations()
     }
     if (intensity > 255) intensity = 255;
 }
+
+void Sphere::calculatePhongReflectuin(Light light, sphereSurfaceNormal) {
+    (material.ambientBlue * light.blue)+(material.diffuseBlue*light.blue*(sphereSurfaceNormal * lightDirection))+(material.specularBlue * light.blue*(reflectedray.normailise()*directionFrompointToPixel.normalise)^shinienessCoefficient);
+    (material.ambientRed* light.red)+(material.diffuseRed*light.Red*(sphereSurfaceNormal * lightDirection))+(material.specularRed* light.red*(reflectedray.normailise()*directionFrompointToPixel.normalise)^shinienessCoefficient);
+    (material.ambientGreen* light.green)+(material.diffuseGreen*light.green*(sphereSurfaceNormal * lightDirection))+(material.specularGreen* light.Green*(reflectedray.normailise()*directionFrompointToPixel.normalise)^shinienessCoefficient);
+}
