@@ -42,7 +42,7 @@ int main() {
         ImGui::NewFrame();
 
         {
-            static Gui myGui;
+            static Gui myGui = Gui(600,400);
             static float red,green, blue;
             ImGui::Begin("Test2", NULL, ImGuiWindowFlags_AlwaysAutoResize);
             ImGui::PushItemWidth(200) ;

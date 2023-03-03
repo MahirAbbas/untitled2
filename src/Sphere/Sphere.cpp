@@ -3,11 +3,17 @@
 //
 
 #include "Sphere.h"
+
+Sphere::Sphere(Vector cs, double radius){
+
+    this->Cs = cs;
+    this->radius = radius;
+};
 void Sphere::calculations()
 {
     a = d.dot(d);
     b = 2*v.dot(d);
-    c = v.dot(v)-(r*r);
+    c = v.dot(v)-(radius * radius);
     disc = (b*b)-4*a*c;
     if (disc < 0) intensity = 0;
     else
@@ -40,8 +46,8 @@ void Sphere::calculations()
     if (intensity > 255) intensity = 255;
 }
 
-void Sphere::calculatePhongReflectuin(Light light, sphereSurfaceNormal) {
-    (material.ambientBlue * light.blue)+(material.diffuseBlue*light.blue*(sphereSurfaceNormal * lightDirection))+(material.specularBlue * light.blue*(reflectedray.normailise()*directionFrompointToPixel.normalise)^shinienessCoefficient);
-    (material.ambientRed* light.red)+(material.diffuseRed*light.Red*(sphereSurfaceNormal * lightDirection))+(material.specularRed* light.red*(reflectedray.normailise()*directionFrompointToPixel.normalise)^shinienessCoefficient);
-    (material.ambientGreen* light.green)+(material.diffuseGreen*light.green*(sphereSurfaceNormal * lightDirection))+(material.specularGreen* light.Green*(reflectedray.normailise()*directionFrompointToPixel.normalise)^shinienessCoefficient);
-}
+//void Sphere::calculatePhongReflectuin(Light light, sphereSurfaceNormal) {
+//    (material.ambientBlue * light.blue)+(material.diffuseBlue*light.blue*(sphereSurfaceNormal * lightDirection))+(material.specularBlue * light.blue*(reflectedray.normailise()*directionFrompointToPixel.normalise)^shinienessCoefficient);
+//    (material.ambientRed* light.red)+(material.diffuseRed*light.Red*(sphereSurfaceNormal * lightDirection))+(material.specularRed* light.red*(reflectedray.normailise()*directionFrompointToPixel.normalise)^shinienessCoefficient);
+//    (material.ambientGreen* light.green)+(material.diffuseGreen*light.green*(sphereSurfaceNormal * lightDirection))+(material.specularGreen* light.Green*(reflectedray.normailise()*directionFrompointToPixel.normalise)^shinienessCoefficient);
+//}

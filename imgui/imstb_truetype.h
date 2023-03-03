@@ -4573,9 +4573,9 @@ static int stbtt__solve_cubic(float a, float b, float c, float* r)
       r[1] = s - u * (m + n);
       r[2] = s - u * (m - n);
 
-      //STBTT_assert( STBTT_fabs(((r[0]+a)*r[0]+b)*r[0]+c) < 0.05f);  // these asserts may not be safe at all scales, though they're in bezier t parameter units so maybe?
-      //STBTT_assert( STBTT_fabs(((r[1]+a)*r[1]+b)*r[1]+c) < 0.05f);
-      //STBTT_assert( STBTT_fabs(((r[2]+a)*r[2]+b)*r[2]+c) < 0.05f);
+      //STBTT_assert( STBTT_fabs(((radius[0]+a)*radius[0]+b)*radius[0]+c) < 0.05f);  // these asserts may not be safe at all scales, though they're in bezier t parameter units so maybe?
+      //STBTT_assert( STBTT_fabs(((radius[1]+a)*radius[1]+b)*radius[1]+c) < 0.05f);
+      //STBTT_assert( STBTT_fabs(((radius[2]+a)*radius[2]+b)*radius[2]+c) < 0.05f);
       return 3;
    }
 }

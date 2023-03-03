@@ -72,6 +72,11 @@ if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   include("/home/mahir/CLionProjects/ray/cmake-build-debug/src/Gui_src/cmake_install.cmake")
 endif()
 
+if(NOT CMAKE_INSTALL_LOCAL_ONLY)
+  # Include the install script for the subdirectory.
+  include("/home/mahir/CLionProjects/ray/cmake-build-debug/src/Material/cmake_install.cmake")
+endif()
+
 if(CMAKE_INSTALL_COMPONENT)
   set(CMAKE_INSTALL_MANIFEST "install_manifest_${CMAKE_INSTALL_COMPONENT}.txt")
 else()

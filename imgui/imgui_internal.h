@@ -246,7 +246,7 @@ namespace ImStb
 // Misc Macros
 #define IM_PI                           3.14159265358979323846f
 #ifdef _WIN32
-#define IM_NEWLINE                      "\r\n"   // Play it nice with Windows users (Update: since 2018-05, Notepad finally appears to support Unix-style carriage returns!)
+#define IM_NEWLINE                      "\radius\n"   // Play it nice with Windows users (Update: since 2018-05, Notepad finally appears to support Unix-style carriage returns!)
 #else
 #define IM_NEWLINE                      "\n"
 #endif
@@ -735,7 +735,7 @@ struct ImGuiTextIndex
 // ImDrawList: Helper function to calculate a circle's segment count given its radius and a "maximum error" value.
 // Estimation of number of circle segment based on error is derived using method described in https://stackoverflow.com/a/2244088/15194693
 // Number of segments (N) is calculated using equation:
-//   N = ceil ( pi / acos(1 - error / r) )     where r > 0, error <= r
+//   N = ceil ( pi / acos(1 - error / radius) )     where radius > 0, error <= radius
 // Our equation is significantly simpler that one in the post thanks for choosing segment that is
 // perpendicular to X axis. Follow steps in the article from this starting condition and you will
 // will get this result.
@@ -747,7 +747,7 @@ struct ImGuiTextIndex
 #define IM_DRAWLIST_CIRCLE_AUTO_SEGMENT_MAX                     512
 #define IM_DRAWLIST_CIRCLE_AUTO_SEGMENT_CALC(_RAD,_MAXERROR)    ImClamp(IM_ROUNDUP_TO_EVEN((int)ImCeil(IM_PI / ImAcos(1 - ImMin((_MAXERROR), (_RAD)) / (_RAD)))), IM_DRAWLIST_CIRCLE_AUTO_SEGMENT_MIN, IM_DRAWLIST_CIRCLE_AUTO_SEGMENT_MAX)
 
-// Raw equation from IM_DRAWLIST_CIRCLE_AUTO_SEGMENT_CALC rewritten for 'r' and 'error'.
+// Raw equation from IM_DRAWLIST_CIRCLE_AUTO_SEGMENT_CALC rewritten for 'radius' and 'error'.
 #define IM_DRAWLIST_CIRCLE_AUTO_SEGMENT_CALC_R(_N,_MAXERROR)    ((_MAXERROR) / (1 - ImCos(IM_PI / ImMax((float)(_N), IM_PI))))
 #define IM_DRAWLIST_CIRCLE_AUTO_SEGMENT_CALC_ERROR(_N,_RAD)     ((1 - ImCos(IM_PI / ImMax((float)(_N), IM_PI))) / (_RAD))
 

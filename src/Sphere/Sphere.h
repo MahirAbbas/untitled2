@@ -16,9 +16,8 @@
 //TODO VECTOR D AS CONSTRUCTOR, AND Cs, Origin etc
     class Sphere {
     public:
-        Sphere(Vector cs){
-            this->Cs = cs;
-        }
+        Sphere();
+        Sphere(Vector cs, double radius);
         double intensity;
         Vector ambient_coefficient;
         Material material;
@@ -26,12 +25,12 @@
         // Direction of line
         Vector d = Vector(0, 0, 1);
         // Direction of line
-        // 3D Sphere = (p-Cs)^2=r^2
+        // 3D Sphere = (p-Cs)^2=radius^2
         // p is any point on the Sphere surface
-        // r = radius of Sphere (scalar)
+        // radius = radius of Sphere (scalar)
         // Cs - origin of the Sphere
         Vector Cs, p;
-        double r = 100;
+        double radius = 100;
         double t = 0;
         Vector o= Vector(0,0,0);
 //        Vector v = o-Cs;

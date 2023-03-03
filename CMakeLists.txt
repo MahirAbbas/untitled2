@@ -1,5 +1,6 @@
 cmake_minimum_required(VERSION 3.24)
 project(untitled2)
+set(CMAKE_VERBOSE_MAKEFILE ON)
 
 set(CMAKE_CXX_STANDARD 17)
 add_subdirectory(imgui)
@@ -8,8 +9,9 @@ add_subdirectory(src)
 add_subdirectory(src/Light)
 add_subdirectory(src/Scene)
 add_subdirectory(src/Gui_src)
+add_subdirectory(src/Material)
 #add_subdirectory(src/Sphere)
 
 add_executable(untitled2 imgui/glad.c main.cpp )
-target_link_libraries(untitled2 glfw GL dl pthread imgui backends Gui Sphere Vector Scene)
+target_link_libraries(untitled2 glfw GL dl pthread Gui Scene imgui backends Sphere Vector )
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/bin)

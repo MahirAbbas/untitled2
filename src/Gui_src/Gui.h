@@ -29,14 +29,9 @@
 //        ImVec2 imagesize = ImVec2(width, height);
         GLuint texture = NULL;
 
-        Gui(int width, int height) {
-            this->width = 600;
-            this->height = 400;
-            r = g = b = 0.f;
-            text = "";
+        Scene sphereScene;
 
-            UpdateTexture();
-        }
+        Gui(int width, int height);
 
         void SetRed(const float rv) {
             r = rv;

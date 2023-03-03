@@ -11,3 +11,11 @@
 // imgui/texture
 // GUI/sliders
 // render
+Scene::Scene(){
+
+};
+Scene::Scene(int width, int height) {
+    this->width = width;
+    this->height = height;
+
+};

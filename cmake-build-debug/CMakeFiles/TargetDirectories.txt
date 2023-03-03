@@ -24,3 +24,6 @@
 /home/mahir/CLionProjects/ray/cmake-build-debug/src/Gui_src/CMakeFiles/Gui.dir
 /home/mahir/CLionProjects/ray/cmake-build-debug/src/Gui_src/CMakeFiles/edit_cache.dir
 /home/mahir/CLionProjects/ray/cmake-build-debug/src/Gui_src/CMakeFiles/rebuild_cache.dir
+/home/mahir/CLionProjects/ray/cmake-build-debug/src/Material/CMakeFiles/Material.dir
+/home/mahir/CLionProjects/ray/cmake-build-debug/src/Material/CMakeFiles/edit_cache.dir
+/home/mahir/CLionProjects/ray/cmake-build-debug/src/Material/CMakeFiles/rebuild_cache.dir

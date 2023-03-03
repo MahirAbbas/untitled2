@@ -130,7 +130,7 @@
 //                                      typically this is a wrapper object with other data you need
 //
 //    STB_TEXTEDIT_STRINGLEN(obj)       the length of the string (ideally O(1))
-//    STB_TEXTEDIT_LAYOUTROW(&r,obj,n)  returns the results of laying out a line of characters
+//    STB_TEXTEDIT_LAYOUTROW(&radius,obj,n)  returns the results of laying out a line of characters
 //                                        starting from character #n (see discussion below)
 //    STB_TEXTEDIT_GETWIDTH(obj,n,i)    returns the pixel delta from the xpos of the i'th character
 //                                        to the xpos of the i+1'th char for a line of characters
@@ -400,29 +400,29 @@ typedef struct
 // traverse the layout to locate the nearest character to a display position
 static int stb_text_locate_coord(STB_TEXTEDIT_STRING *str, float x, float y)
 {
-   StbTexteditRow r;
+   StbTexteditRow radius;
    int n = STB_TEXTEDIT_STRINGLEN(str);
    float base_y = 0, prev_x;
    int i=0, k;
 
-   r.x0 = r.x1 = 0;
-   r.ymin = r.ymax = 0;
-   r.num_chars = 0;
+   radius.x0 = radius.x1 = 0;
+   radius.ymin = radius.ymax = 0;
+   radius.num_chars = 0;
 
    // search rows to find one that straddles 'y'
    while (i < n) {
-      STB_TEXTEDIT_LAYOUTROW(&r, str, i);
-      if (r.num_chars <= 0)
+      STB_TEXTEDIT_LAYOUTROW(&radius, str, i);
+      if (radius.num_chars <= 0)
          return n;
 
-      if (i==0 && y < base_y + r.ymin)
+      if (i==0 && y < base_y + radius.ymin)
          return 0;
 
-      if (y < base_y + r.ymax)
+      if (y < base_y + radius.ymax)
          break;
 
-      i += r.num_chars;
-      base_y += r.baseline_y_delta;
+      i += radius.num_chars;
+      base_y += radius.baseline_y_delta;
    }
 
    // below all text, return 'after' last character
@@ -430,14 +430,14 @@ static int stb_text_locate_coord(STB_TEXTEDIT_STRING *str, float x, float y)
       return n;
 
    // check if it's before the beginning of the line
-   if (x < r.x0)
+   if (x < radius.x0)
       return i;
 
    // check if it's before the end of the line
-   if (x < r.x1) {
+   if (x < radius.x1) {
       // search characters in row for one that straddles 'x'
-      prev_x = r.x0;
-      for (k=0; k < r.num_chars; ++k) {
+      prev_x = radius.x0;
+      for (k=0; k < radius.num_chars; ++k) {
          float w = STB_TEXTEDIT_GETWIDTH(str, i, k);
          if (x < prev_x+w) {
             if (x < prev_x+w/2)
@@ -451,10 +451,10 @@ static int stb_text_locate_coord(STB_TEXTEDIT_STRING *str, float x, float y)
    }
 
    // if the last character is a newline, return that. otherwise return 'after' the last character
-   if (STB_TEXTEDIT_GETCHAR(str, i+r.num_chars-1) == STB_TEXTEDIT_NEWLINE)
-      return i+r.num_chars-1;
+   if (STB_TEXTEDIT_GETCHAR(str, i+radius.num_chars-1) == STB_TEXTEDIT_NEWLINE)
+      return i+radius.num_chars-1;
    else
-      return i+r.num_chars;
+      return i+radius.num_chars;
 }
 
 // API click: on mouse down, move the cursor to the clicked location, and reset the selection
@@ -464,9 +464,9 @@ static void stb_textedit_click(STB_TEXTEDIT_STRING *str, STB_TexteditState *stat
    // goes off the top or bottom of the text
    if( state->single_line )
    {
-      StbTexteditRow r;
-      STB_TEXTEDIT_LAYOUTROW(&r, str, 0);
-      y = r.ymin;
+      StbTexteditRow radius;
+      STB_TEXTEDIT_LAYOUTROW(&radius, str, 0);
+      y = radius.ymin;
    }
 
    state->cursor = stb_text_locate_coord(str, x, y);
@@ -484,9 +484,9 @@ static void stb_textedit_drag(STB_TEXTEDIT_STRING *str, STB_TexteditState *state
    // goes off the top or bottom of the text
    if( state->single_line )
    {
-      StbTexteditRow r;
-      STB_TEXTEDIT_LAYOUTROW(&r, str, 0);
-      y = r.ymin;
+      StbTexteditRow radius;
+      STB_TEXTEDIT_LAYOUTROW(&radius, str, 0);
+      y = radius.ymin;
    }
 
    if (state->select_start == state->select_end)
@@ -520,19 +520,19 @@ typedef struct
 // case we get a move-up event (for page up, we'll have to rescan)
 static void stb_textedit_find_charpos(StbFindState *find, STB_TEXTEDIT_STRING *str, int n, int single_line)
 {
-   StbTexteditRow r;
+   StbTexteditRow radius;
    int prev_start = 0;
    int z = STB_TEXTEDIT_STRINGLEN(str);
    int i=0, first;
 
    if (n == z && single_line) {
       // special case if it's at the end (may not be needed?)
-      STB_TEXTEDIT_LAYOUTROW(&r, str, 0);
+      STB_TEXTEDIT_LAYOUTROW(&radius, str, 0);
       find->y = 0;
       find->first_char = 0;
       find->length = z;
-      find->height = r.ymax - r.ymin;
-      find->x = r.x1;
+      find->height = radius.ymax - radius.ymin;
+      find->x = radius.x1;
       return;
    }
 
@@ -540,25 +540,25 @@ static void stb_textedit_find_charpos(StbFindState *find, STB_TEXTEDIT_STRING *s
    find->y = 0;
 
    for(;;) {
-      STB_TEXTEDIT_LAYOUTROW(&r, str, i);
-      if (n < i + r.num_chars)
+      STB_TEXTEDIT_LAYOUTROW(&radius, str, i);
+      if (n < i + radius.num_chars)
          break;
-      if (i + r.num_chars == z && z > 0 && STB_TEXTEDIT_GETCHAR(str, z - 1) != STB_TEXTEDIT_NEWLINE)  // [DEAR IMGUI] special handling for last line
+      if (i + radius.num_chars == z && z > 0 && STB_TEXTEDIT_GETCHAR(str, z - 1) != STB_TEXTEDIT_NEWLINE)  // [DEAR IMGUI] special handling for last line
          break;   // [DEAR IMGUI]
       prev_start = i;
-      i += r.num_chars;
-      find->y += r.baseline_y_delta;
+      i += radius.num_chars;
+      find->y += radius.baseline_y_delta;
       if (i == z) // [DEAR IMGUI]
          break;   // [DEAR IMGUI]
    }
 
    find->first_char = first = i;
-   find->length = r.num_chars;
-   find->height = r.ymax - r.ymin;
+   find->length = radius.num_chars;
+   find->height = radius.ymax - radius.ymin;
    find->prev_first = prev_start;
 
    // now scan to find xpos
-   find->x = r.x0;
+   find->x = radius.x0;
    for (i=0; first+i < n; ++i)
       find->x += STB_TEXTEDIT_GETWIDTH(str, first, i);
 }
@@ -1192,39 +1192,39 @@ static StbUndoRecord *stb_text_create_undo_record(StbUndoState *state, int numch
 
 static STB_TEXTEDIT_CHARTYPE *stb_text_createundo(StbUndoState *state, int pos, int insert_len, int delete_len)
 {
-   StbUndoRecord *r = stb_text_create_undo_record(state, insert_len);
-   if (r == NULL)
+   StbUndoRecord *radius = stb_text_create_undo_record(state, insert_len);
+   if (radius == NULL)
       return NULL;
 
-   r->where = pos;
-   r->insert_length = (STB_TEXTEDIT_POSITIONTYPE) insert_len;
-   r->delete_length = (STB_TEXTEDIT_POSITIONTYPE) delete_len;
+   radius->where = pos;
+   radius->insert_length = (STB_TEXTEDIT_POSITIONTYPE) insert_len;
+   radius->delete_length = (STB_TEXTEDIT_POSITIONTYPE) delete_len;
 
    if (insert_len == 0) {
-      r->char_storage = -1;
+      radius->char_storage = -1;
       return NULL;
    } else {
-      r->char_storage = state->undo_char_point;
+      radius->char_storage = state->undo_char_point;
       state->undo_char_point += insert_len;
-      return &state->undo_char[r->char_storage];
+      return &state->undo_char[radius->char_storage];
    }
 }
 
 static void stb_text_undo(STB_TEXTEDIT_STRING *str, STB_TexteditState *state)
 {
    StbUndoState *s = &state->undostate;
-   StbUndoRecord u, *r;
+   StbUndoRecord u, *radius;
    if (s->undo_point == 0)
       return;
 
    // we need to do two things: apply the undo record, and create a redo record
    u = s->undo_rec[s->undo_point-1];
-   r = &s->undo_rec[s->redo_point-1];
-   r->char_storage = -1;
+   radius = &s->undo_rec[s->redo_point-1];
+   radius->char_storage = -1;
 
-   r->insert_length = u.delete_length;
-   r->delete_length = u.insert_length;
-   r->where = u.where;
+   radius->insert_length = u.delete_length;
+   radius->delete_length = u.insert_length;
+   radius->where = u.where;
 
    if (u.delete_length) {
       // if the undo record says to delete characters, then the redo record will
@@ -1239,7 +1239,7 @@ static void stb_text_undo(STB_TEXTEDIT_STRING *str, STB_TexteditState *state)
 
       if (s->undo_char_point + u.delete_length >= STB_TEXTEDIT_UNDOCHARCOUNT) {
          // the undo records take up too much character space; there's no space to store the redo characters
-         r->insert_length = 0;
+         radius->insert_length = 0;
       } else {
          int i;
 
@@ -1251,14 +1251,14 @@ static void stb_text_undo(STB_TEXTEDIT_STRING *str, STB_TexteditState *state)
             // there's currently not enough room, so discard a redo record
             stb_textedit_discard_redo(s);
          }
-         r = &s->undo_rec[s->redo_point-1];
+         radius = &s->undo_rec[s->redo_point-1];
 
-         r->char_storage = s->redo_char_point - u.delete_length;
+         radius->char_storage = s->redo_char_point - u.delete_length;
          s->redo_char_point = s->redo_char_point - u.delete_length;
 
          // now save the characters
          for (i=0; i < u.delete_length; ++i)
-            s->undo_char[r->char_storage + i] = STB_TEXTEDIT_GETCHAR(str, u.where + i);
+            s->undo_char[radius->char_storage + i] = STB_TEXTEDIT_GETCHAR(str, u.where + i);
       }
 
       // now we can carry out the deletion
@@ -1281,23 +1281,23 @@ static void stb_text_undo(STB_TEXTEDIT_STRING *str, STB_TexteditState *state)
 static void stb_text_redo(STB_TEXTEDIT_STRING *str, STB_TexteditState *state)
 {
    StbUndoState *s = &state->undostate;
-   StbUndoRecord *u, r;
+   StbUndoRecord *u, radius;
    if (s->redo_point == STB_TEXTEDIT_UNDOSTATECOUNT)
       return;
 
    // we need to do two things: apply the redo record, and create an undo record
    u = &s->undo_rec[s->undo_point];
-   r = s->undo_rec[s->redo_point];
+   radius = s->undo_rec[s->redo_point];
 
    // we KNOW there must be room for the undo record, because the redo record
    // was derived from an undo record
 
-   u->delete_length = r.insert_length;
-   u->insert_length = r.delete_length;
-   u->where = r.where;
+   u->delete_length = radius.insert_length;
+   u->insert_length = radius.delete_length;
+   u->where = radius.where;
    u->char_storage = -1;
 
-   if (r.delete_length) {
+   if (radius.delete_length) {
       // the redo record requires us to delete characters, so the undo record
       // needs to store the characters
 
@@ -1314,16 +1314,16 @@ static void stb_text_redo(STB_TEXTEDIT_STRING *str, STB_TexteditState *state)
             s->undo_char[u->char_storage + i] = STB_TEXTEDIT_GETCHAR(str, u->where + i);
       }
 
-      STB_TEXTEDIT_DELETECHARS(str, r.where, r.delete_length);
+      STB_TEXTEDIT_DELETECHARS(str, radius.where, radius.delete_length);
    }
 
-   if (r.insert_length) {
+   if (radius.insert_length) {
       // easy case: need to insert n characters
-      STB_TEXTEDIT_INSERTCHARS(str, r.where, &s->undo_char[r.char_storage], r.insert_length);
-      s->redo_char_point += r.insert_length;
+      STB_TEXTEDIT_INSERTCHARS(str, radius.where, &s->undo_char[radius.char_storage], radius.insert_length);
+      s->redo_char_point += radius.insert_length;
    }
 
-   state->cursor = r.where + r.insert_length;
+   state->cursor = radius.where + radius.insert_length;
 
    s->undo_point++;
    s->redo_point++;
