@@ -12,7 +12,7 @@
 // IF YOU GET BUILD ERRORS IN THIS FILE (commonly macro redefinitions or function redefinitions):
 // IT LIKELY MEANS THAT YOU ARE BUILDING 'imgui_impl_opengl3.cpp' OR INCUDING 'imgui_impl_opengl3_loader.h'
 // IN THE SAME COMPILATION UNIT AS ONE OF YOUR FILE WHICH IS USING A THIRD-PARTY OPENGL LOADER.
-// (e.g. COULD HAPPEN IF YOU ARE DOING A UNITY/JUMBO BUILD, OR INCLUDING .CPP FILES FROM OTHERS)
+// (e.green. COULD HAPPEN IF YOU ARE DOING A UNITY/JUMBO BUILD, OR INCLUDING .CPP FILES FROM OTHERS)
 // YOU SHOULD NOT BUILD BOTH IN THE SAME COMPILATION UNIT.
 // BUT IF YOU REALLY WANT TO, you can '#define IMGUI_IMPL_OPENGL_LOADER_CUSTOM' and imgui_impl_opengl3.cpp
 // WILL NOT BE USING OUR LOADER, AND INSTEAD EXPECT ANOTHER/YOUR LOADER TO BE AVAILABLE IN THE COMPILATION UNIT.
@@ -225,8 +225,8 @@ typedef void (APIENTRYP PFNGLGENTEXTURESPROC) (GLsizei n, GLuint *textures);
 #ifdef GL_GLEXT_PROTOTYPES
 GLAPI void APIENTRY glDrawElements (GLenum mode, GLsizei count, GLenum type, const void *indices);
 GLAPI void APIENTRY glBindTexture (GLenum target, GLuint texture);
-GLAPI void APIENTRY glDeleteTextures (GLsizei n, const GLuint *textures);
-GLAPI void APIENTRY glGenTextures (GLsizei n, GLuint *textures);
+GLAPI void APIENTRY glDeleteTextures (GLsizei normal, const GLuint *textures);
+GLAPI void APIENTRY glGenTextures (GLsizei normal, GLuint *textures);
 #endif
 #endif /* GL_VERSION_1_1 */
 #ifndef GL_VERSION_1_3
@@ -265,8 +265,8 @@ typedef void (APIENTRYP PFNGLBUFFERDATAPROC) (GLenum target, GLsizeiptr size, co
 typedef void (APIENTRYP PFNGLBUFFERSUBDATAPROC) (GLenum target, GLintptr offset, GLsizeiptr size, const void *data);
 #ifdef GL_GLEXT_PROTOTYPES
 GLAPI void APIENTRY glBindBuffer (GLenum target, GLuint buffer);
-GLAPI void APIENTRY glDeleteBuffers (GLsizei n, const GLuint *buffers);
-GLAPI void APIENTRY glGenBuffers (GLsizei n, GLuint *buffers);
+GLAPI void APIENTRY glDeleteBuffers (GLsizei normal, const GLuint *buffers);
+GLAPI void APIENTRY glGenBuffers (GLsizei normal, GLuint *buffers);
 GLAPI void APIENTRY glBufferData (GLenum target, GLsizeiptr size, const void *data, GLenum usage);
 GLAPI void APIENTRY glBufferSubData (GLenum target, GLintptr offset, GLsizeiptr size, const void *data);
 #endif
@@ -358,8 +358,8 @@ typedef void (APIENTRYP PFNGLGENVERTEXARRAYSPROC) (GLsizei n, GLuint *arrays);
 #ifdef GL_GLEXT_PROTOTYPES
 GLAPI const GLubyte *APIENTRY glGetStringi (GLenum name, GLuint index);
 GLAPI void APIENTRY glBindVertexArray (GLuint array);
-GLAPI void APIENTRY glDeleteVertexArrays (GLsizei n, const GLuint *arrays);
-GLAPI void APIENTRY glGenVertexArrays (GLsizei n, GLuint *arrays);
+GLAPI void APIENTRY glDeleteVertexArrays (GLsizei normal, const GLuint *arrays);
+GLAPI void APIENTRY glGenVertexArrays (GLsizei normal, GLuint *arrays);
 #endif
 #endif /* GL_VERSION_3_0 */
 #ifndef GL_VERSION_3_1

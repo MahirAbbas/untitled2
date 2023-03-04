@@ -26,24 +26,11 @@
         float r, g, b;
         std::string text;
         int width, height;
-//        ImVec2 imagesize = ImVec2(width, height);
         GLuint texture = NULL;
 
         Scene sphereScene;
 
-        Gui(int width, int height);
-
-        void SetRed(const float rv) {
-            r = rv;
-        }
-
-        void SetGreen(const float gv) {
-            g = gv;
-        }
-
-        void SetBlue(const float bv) {
-            b = bv;
-        }
+        Gui(int width, int height, Scene scene);
 
         const std::string GetText() { return text; }
 

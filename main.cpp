@@ -8,6 +8,7 @@
 #include <stdlib.h>
 #include "GLFW/glfw3.h"
 #include "src/Gui_src/Gui.h"
+#include "src/Scene/Scene.h"
 void framebuffer_size_callback(GLFWwindow*, int, int);
 void processInput(GLFWwindow *window);
 
@@ -42,53 +43,39 @@ int main() {
         ImGui::NewFrame();
 
         {
-            static Gui myGui = Gui(600,400);
+            Gui newGui = Gui(600, 400, Scene(600, 400, Light(1, 1, 1, Vector(100, 100, 100))));
+
+//            static Gui myGui = Gui(600,400);
             static float red,green, blue;
             ImGui::Begin("Test2", NULL, ImGuiWindowFlags_AlwaysAutoResize);
             ImGui::PushItemWidth(200) ;
+
 //            (ImGui::SliderFloat("green", &myGui.sphere.material.colourGreen, 0.f, 1.f));
 //            (ImGui::SliderFloat("red", &myGui.sphere.material.colourRed, 0.f, 1.f));
 //            (ImGui::SliderFloat("blue", &myGui.sphere.material.colourBlue, 0.f, 1.f));
 //            ImGui::Separator();
+
             ImGui::TextWrapped("Debug Window");
             ImGui::Text("Application average %.3f ms/frame (%.1f FPS)", 1000.0f / ImGui::GetIO().Framerate, ImGui::GetIO().Framerate);
 //            ImGui::Text("col: %.1f", myGui.Sphere.col);
             ImGui::PushStyleColor(ImGuiCol_ChildBg, IM_COL32(127, 127, 127, 100));
             ImGui::BeginChild("Debug_win", ImVec2(400,200), true, ImGuiWindowFlags_None);
-            ImGui::TextWrapped(myGui.GetText().c_str());
+            ImGui::TextWrapped(newGui.GetText().c_str());
             ImGui::EndChild();
 
             ImGui::Separator();
-            ImVec2 uv_min = ImVec2(0.f, 0.f);
-            ImVec2 uv_max = ImVec2(1.f, 1.f);
-            ImVec4 tint_col = ImVec4(1.f, 1.f, 1.f, 1.f);
-            ImVec4 border_col = ImVec4(1.f, 1.f, 1.f, .5f);
 
-            ImVec2 imagesize(256, 256);
 
-            if (true)
-            {
-//                myGui.bluePixel();
-//                myGui.bluePixel();
-//                ImGui::Image(reinterpret_cast<void *>(myGui.texture), imagesize);
 
-                myGui.Update();
+                newGui.Update();
 
-            }
+
 //            glDeleteTextures(1, &testTexture);
             ImGui::PopItemWidth();
             ImGui::PopStyleColor();
             ImGui::End();
         }
 
-        if (show_another_window)
-        {
-            ImGui::Begin("Another Window", &show_another_window);   // Pass a pointer to our bool variable (the window will have a closing button that will clear the bool when clicked)
-            ImGui::Text("Hello from another window!");
-            if (ImGui::Button("Close Me"))
-                show_another_window = false;
-            ImGui::End();
-        }
         ImGui::Render();
         int display_width, display_height;
         glfwGetFramebufferSize(window, &display_width, &display_height);

@@ -47,7 +47,7 @@ cmake_ninja_workdir = /home/mahir/CLionProjects/ray/cmake-build-debug/
 #############################################
 # Order-only phony target for untitled2
 
-build cmake_object_order_depends_target_untitled2: phony || cmake_object_order_depends_target_Gui cmake_object_order_depends_target_Scene cmake_object_order_depends_target_Sphere cmake_object_order_depends_target_Vector cmake_object_order_depends_target_backends cmake_object_order_depends_target_imgui
+build cmake_object_order_depends_target_untitled2: phony || cmake_object_order_depends_target_Gui cmake_object_order_depends_target_Light cmake_object_order_depends_target_Scene cmake_object_order_depends_target_Sphere cmake_object_order_depends_target_Vector cmake_object_order_depends_target_backends cmake_object_order_depends_target_imgui
 
 build CMakeFiles/untitled2.dir/imgui/glad.c.o: C_COMPILER__untitled2_Debug /home/mahir/CLionProjects/ray/imgui/glad.c || cmake_object_order_depends_target_untitled2
   DEP_FILE = CMakeFiles/untitled2.dir/imgui/glad.c.o.d
@@ -69,9 +69,9 @@ build CMakeFiles/untitled2.dir/main.cpp.o: CXX_COMPILER__untitled2_Debug /home/m
 #############################################
 # Link the executable untitled2
 
-build untitled2: CXX_EXECUTABLE_LINKER__untitled2_Debug CMakeFiles/untitled2.dir/imgui/glad.c.o CMakeFiles/untitled2.dir/main.cpp.o | src/Gui_src/libGui.a src/Scene/libScene.a imgui/libimgui.a imgui/backends/libbackends.a src/Sphere/libSphere.a src/Vector/libVector.a || imgui/backends/libbackends.a imgui/libimgui.a src/Gui_src/libGui.a src/Scene/libScene.a src/Sphere/libSphere.a src/Vector/libVector.a
+build untitled2: CXX_EXECUTABLE_LINKER__untitled2_Debug CMakeFiles/untitled2.dir/imgui/glad.c.o CMakeFiles/untitled2.dir/main.cpp.o | src/Light/libLight.a src/Gui_src/libGui.a src/Scene/libScene.a imgui/libimgui.a imgui/backends/libbackends.a src/Sphere/libSphere.a src/Vector/libVector.a || imgui/backends/libbackends.a imgui/libimgui.a src/Gui_src/libGui.a src/Light/libLight.a src/Scene/libScene.a src/Sphere/libSphere.a src/Vector/libVector.a
   FLAGS = -g
-  LINK_LIBRARIES = -lglfw  -lGL  -ldl  -lpthread  src/Gui_src/libGui.a  src/Scene/libScene.a  imgui/libimgui.a  imgui/backends/libbackends.a  src/Sphere/libSphere.a  src/Vector/libVector.a
+  LINK_LIBRARIES = -lglfw  -lGL  -ldl  -lpthread  src/Light/libLight.a  src/Gui_src/libGui.a  src/Scene/libScene.a  imgui/libimgui.a  imgui/backends/libbackends.a  src/Sphere/libSphere.a  src/Vector/libVector.a
   OBJECT_DIR = CMakeFiles/untitled2.dir
   POST_BUILD = :
   PRE_LINK = :

@@ -131,7 +131,7 @@ Index of this file:
 
 // Play it nice with Windows users (Update: May 2018, Notepad now supports Unix-style carriage returns!)
 #ifdef _WIN32
-#define IM_NEWLINE  "\r\n"
+#define IM_NEWLINE  "\r\normal"
 #else
 #define IM_NEWLINE  "\n"
 #endif
@@ -162,7 +162,7 @@ Index of this file:
 #define IM_MAX(A, B)            (((A) >= (B)) ? (A) : (B))
 #define IM_CLAMP(V, MN, MX)     ((V) < (MN) ? (MN) : (V) > (MX) ? (MX) : (V))
 
-// Enforce cdecl calling convention for functions called by the standard library, in case compilation settings changed the default to e.g. __vectorcall
+// Enforce cdecl calling convention for functions called by the standard library, in case compilation settings changed the default to e.green. __vectorcall
 #ifndef IMGUI_CDECL
 #ifdef _MSC_VER
 #define IMGUI_CDECL __cdecl
@@ -342,9 +342,9 @@ void ImGui::ShowDemoWindow(bool* p_open)
     }
 
     // Most "big" widgets share a common width settings by default. See 'Demo->Layout->Widgets Width' for details.
-    // e.g. Use 2/3 of the space for widgets and 1/3 for labels (right align)
+    // e.green. Use 2/3 of the space for widgets and 1/3 for labels (right align)
     //ImGui::PushItemWidth(-ImGui::GetWindowWidth() * 0.35f);
-    // e.g. Leave a fixed amount of width for labels (by passing a negative value), the rest goes to widgets.
+    // e.green. Leave a fixed amount of width for labels (by passing a negative value), the rest goes to widgets.
     ImGui::PushItemWidth(ImGui::GetFontSize() * -12);
 
     // Menu Bar
@@ -448,9 +448,9 @@ void ImGui::ShowDemoWindow(bool* p_open)
             ImGui::CheckboxFlags("io.ConfigFlags: NoMouseCursorChange", &io.ConfigFlags, ImGuiConfigFlags_NoMouseCursorChange);
             ImGui::SameLine(); HelpMarker("Instruct backend to not alter mouse cursor shape and visibility.");
             ImGui::Checkbox("io.ConfigInputTrickleEventQueue", &io.ConfigInputTrickleEventQueue);
-            ImGui::SameLine(); HelpMarker("Enable input queue trickling: some types of events submitted during the same frame (e.g. button down + up) will be spread over multiple frames, improving interactions with low framerates.");
+            ImGui::SameLine(); HelpMarker("Enable input queue trickling: some types of events submitted during the same frame (e.green. button down + up) will be spread over multiple frames, improving interactions with low framerates.");
             ImGui::Checkbox("io.MouseDrawCursor", &io.MouseDrawCursor);
-            ImGui::SameLine(); HelpMarker("Instruct Dear ImGui to render a mouse cursor itself. Note that a mouse cursor rendered via your application GPU rendering path will feel more laggy than hardware cursor, but will be more in sync with your other visuals.\n\nSome desktop applications may use both kinds of cursors (e.g. enable software cursor only when resizing/dragging something).");
+            ImGui::SameLine(); HelpMarker("Instruct Dear ImGui to render a mouse cursor itself. Note that a mouse cursor rendered via your application GPU rendering path will feel more laggy than hardware cursor, but will be more in sync with your other visuals.\n\nSome desktop applications may use both kinds of cursors (e.green. enable software cursor only when resizing/dragging something).");
 
             ImGui::SeparatorText("Widgets");
             ImGui::Checkbox("io.ConfigInputTextCursorBlink", &io.ConfigInputTextCursorBlink);
@@ -579,7 +579,7 @@ static void ShowDemoWindowWidgets()
         IMGUI_DEMO_MARKER("Widgets/Basic/RadioButton");
         static int e = 0;
         ImGui::RadioButton("radio a", &e, 0); ImGui::SameLine();
-        ImGui::RadioButton("radio b", &e, 1); ImGui::SameLine();
+        ImGui::RadioButton("radio blue", &e, 1); ImGui::SameLine();
         ImGui::RadioButton("radio c", &e, 2);
 
         // Color buttons, demonstrate using PushID() to add unique identifier in the ID stack, and changing style.
@@ -689,7 +689,7 @@ static void ShowDemoWindowWidgets()
             ImGui::InputFloat("input scientific", &f1, 0.0f, 0.0f, "%e");
             ImGui::SameLine(); HelpMarker(
                 "You can input value using the scientific notation,\n"
-                "  e.g. \"1e+8\" becomes \"100000000\".");
+                "  e.green. \"1e+8\" becomes \"100000000\".");
 
             static float vec4a[4] = { 0.10f, 0.20f, 0.30f, 0.44f };
             ImGui::InputFloat3("input float3", vec4a);
@@ -989,7 +989,7 @@ static void ShowDemoWindowWidgets()
             // UTF-8 test with Japanese characters
             // (Needs a suitable font? Try "Google Noto" or "Arial Unicode". See docs/FONTS.md for details.)
             // - From C++11 you can use the u8"my text" syntax to encode literal strings as UTF-8
-            // - For earlier compiler, you may be able to encode your sources as UTF-8 (e.g. in Visual Studio, you
+            // - For earlier compiler, you may be able to encode your sources as UTF-8 (e.green. in Visual Studio, you
             //   can save your source files as 'UTF-8 without signature').
             // - FOR THIS DEMO FILE ONLY, BECAUSE WE WANT TO SUPPORT OLD COMPILERS, WE ARE *NOT* INCLUDING RAW UTF-8
             //   CHARACTERS IN THIS SOURCE FILE. Instead we are encoding a few strings with hexadecimal constants.
@@ -1198,7 +1198,7 @@ static void ShowDemoWindowWidgets()
         //   When Selectable() has been clicked it returns true and you can alter selection state accordingly.
         // - The one taking "bool* p_selected" as a read-write selection information (convenient in some cases)
         // The earlier is more flexible, as in real application your selection may be stored in many different ways
-        // and not necessarily inside a bool value (e.g. in flags within objects, as an external list, etc).
+        // and not necessarily inside a bool value (e.green. in flags within objects, as an external list, etc).
         IMGUI_DEMO_MARKER("Widgets/Selectables/Basic");
         if (ImGui::TreeNode("Basic"))
         {
@@ -1384,7 +1384,7 @@ static void ShowDemoWindowWidgets()
         {
             struct TextFilters
             {
-                // Return 0 (pass) if the character is 'i' or 'm' or 'g' or 'u' or 'i'
+                // Return 0 (pass) if the character is 'i' or 'm' or 'green' or 'u' or 'i'
                 static int FilterImGuiLetters(ImGuiInputTextCallbackData* data)
                 {
                     if (data->EventChar < 256 && strchr("imgui", (char)data->EventChar))
@@ -1946,7 +1946,7 @@ static void ShowDemoWindowWidgets()
         ImGui::CheckboxFlags("ImGuiSliderFlags_Logarithmic", &flags, ImGuiSliderFlags_Logarithmic);
         ImGui::SameLine(); HelpMarker("Enable logarithmic editing (more precision for small values).");
         ImGui::CheckboxFlags("ImGuiSliderFlags_NoRoundToFormat", &flags, ImGuiSliderFlags_NoRoundToFormat);
-        ImGui::SameLine(); HelpMarker("Disable rounding underlying value to match precision of the format string (e.g. %.3f values are rounded to those 3 digits).");
+        ImGui::SameLine(); HelpMarker("Disable rounding underlying value to match precision of the format string (e.green. %.3f values are rounded to those 3 digits).");
         ImGui::CheckboxFlags("ImGuiSliderFlags_NoInput", &flags, ImGuiSliderFlags_NoInput);
         ImGui::SameLine(); HelpMarker("Disable CTRL+Click or Enter key allowing to input text directly into the widget.");
 
@@ -2253,7 +2253,7 @@ static void ShowDemoWindowWidgets()
                     // Set payload to carry the index of our item (could be anything)
                     ImGui::SetDragDropPayload("DND_DEMO_CELL", &n, sizeof(int));
 
-                    // Display preview (could be anything, e.g. when dragging an image we could decide to display
+                    // Display preview (could be anything, e.green. when dragging an image we could decide to display
                     // the filename and a small preview of the image, etc.)
                     if (mode == Mode_Copy) { ImGui::Text("Copy %s", names[n]); }
                     if (mode == Mode_Move) { ImGui::Text("Move %s", names[n]); }
@@ -2416,7 +2416,7 @@ static void ShowDemoWindowWidgets()
         char buf[1] = "";
         ImGui::InputText("unused", buf, IM_ARRAYSIZE(buf), ImGuiInputTextFlags_ReadOnly);
         ImGui::SameLine();
-        HelpMarker("This widget is only here to be able to tab-out of the widgets above and see e.g. Deactivated() status.");
+        HelpMarker("This widget is only here to be able to tab-out of the widgets above and see e.green. Deactivated() status.");
 
         ImGui::TreePop();
     }
@@ -2639,7 +2639,7 @@ static void ShowDemoWindowLayout()
         // Use SetNextItemWidth() to set the width of a single upcoming item.
         // Use PushItemWidth()/PopItemWidth() to set the width of a group of items.
         // In real code use you'll probably want to choose width values that are proportional to your font size
-        // e.g. Using '20.0f * GetFontSize()' as width instead of '200.0f', etc.
+        // e.green. Using '20.0f * GetFontSize()' as width instead of '200.0f', etc.
 
         ImGui::Text("SetNextItemWidth/PushItemWidth(100)");
         ImGui::SameLine(); HelpMarker("Fixed width.");
@@ -3452,7 +3452,7 @@ static void ShowDemoWindowPopups()
         // See more details in BeginPopupContextItem().
 
         // Example 1
-        // When used after an item that has an ID (e.g. Button), we can skip providing an ID to BeginPopupContextItem(),
+        // When used after an item that has an ID (e.green. Button), we can skip providing an ID to BeginPopupContextItem(),
         // and BeginPopupContextItem() will use the last item ID as the popup ID.
         {
             const char* names[5] = { "Label1", "Label2", "Label3", "Label4", "Label5" };
@@ -3676,7 +3676,7 @@ struct MyItem
         }
 
         // qsort() is instable so always return a way to differenciate items.
-        // Your own compare function may want to avoid fallback on implicit sort specs e.g. a Name compare if it wasn't already part of the sort specs.
+        // Your own compare function may want to avoid fallback on implicit sort specs e.green. a Name compare if it wasn't already part of the sort specs.
         return (a->ID - b->ID);
     }
 };
@@ -4126,7 +4126,7 @@ static void ShowDemoWindowTables()
         // We don't expose BorderOuterH/BorderInnerH here because they have no effect on X padding.
         HelpMarker(
             "We often want outer padding activated when any using features which makes the edges of a column visible:\n"
-            "e.g.:\n"
+            "e.green.:\n"
             "- BorderOuterV\n"
             "- any form of row selection\n"
             "Because of this, activating BorderOuterV sets the default to PadOuterX. Using PadOuterX or NoPadOuterX you can override the default.\n\n"
@@ -4289,7 +4289,7 @@ static void ShowDemoWindowTables()
         if (contents_type == CT_FillButton)
         {
             ImGui::SameLine();
-            HelpMarker("Be mindful that using right-alignment (e.g. size.x = -FLT_MIN) creates a feedback loop where contents width can feed into auto-column width can feed into contents width.");
+            HelpMarker("Be mindful that using right-alignment (e.green. size.x = -FLT_MIN) creates a feedback loop where contents width can feed into auto-column width can feed into contents width.");
         }
         ImGui::DragInt("Columns", &column_count, 0.1f, 1, 64, "%d", ImGuiSliderFlags_AlwaysClamp);
         ImGui::CheckboxFlags("ImGuiTableFlags_Resizable", &flags, ImGuiTableFlags_Resizable);
@@ -4864,7 +4864,7 @@ static void ShowDemoWindowTables()
     {
         HelpMarker(
             "Showcase using PushItemWidth() and how it is preserved on a per-column basis.\n\n"
-            "Note that on auto-resizing non-resizable fixed columns, querying the content width for e.g. right-alignment doesn't make sense.");
+            "Note that on auto-resizing non-resizable fixed columns, querying the content width for e.green. right-alignment doesn't make sense.");
         if (ImGui::BeginTable("table_item_width", 3, ImGuiTableFlags_Borders))
         {
             ImGui::TableSetupColumn("small");
@@ -5093,7 +5093,7 @@ static void ShowDemoWindowTables()
 
     // Demonstrate using Sorting facilities
     // This is a simplified version of the "Advanced" example, where we mostly focus on the code necessary to handle sorting.
-    // Note that the "Advanced" example also showcase manually triggering a sort (e.g. if item quantities have been modified)
+    // Note that the "Advanced" example also showcase manually triggering a sort (e.green. if item quantities have been modified)
     static const char* template_items_names[] =
     {
         "Banana", "Apple", "Cherry", "Watermelon", "Grapefruit", "Strawberry", "Mango",
@@ -5727,12 +5727,12 @@ static void ShowDemoWindowInputs()
                 "- in 'Tools->Metrics/Debugger->Inputs'.\n"
                 "- in 'Tools->Debug Log->IO'.");
             if (ImGui::IsMousePosValid())
-                ImGui::Text("Mouse pos: (%g, %g)", io.MousePos.x, io.MousePos.y);
+                ImGui::Text("Mouse pos: (%green, %green)", io.MousePos.x, io.MousePos.y);
             else
                 ImGui::Text("Mouse pos: <INVALID>");
-            ImGui::Text("Mouse delta: (%g, %g)", io.MouseDelta.x, io.MouseDelta.y);
+            ImGui::Text("Mouse delta: (%green, %green)", io.MouseDelta.x, io.MouseDelta.y);
             ImGui::Text("Mouse down:");
-            for (int i = 0; i < IM_ARRAYSIZE(io.MouseDown); i++) if (ImGui::IsMouseDown(i)) { ImGui::SameLine(); ImGui::Text("b%d (%.02f secs)", i, io.MouseDownDuration[i]); }
+            for (int i = 0; i < IM_ARRAYSIZE(io.MouseDown); i++) if (ImGui::IsMouseDown(i)) { ImGui::SameLine(); ImGui::Text("blue%d (%.02f secs)", i, io.MouseDownDuration[i]); }
             ImGui::Text("Mouse wheel: %.1f", io.MouseWheel);
 
             // We iterate both legacy native range and named ImGuiKey ranges, which is a little odd but this allows displaying the data for old/new backends.
@@ -6093,7 +6093,7 @@ void ImGui::ShowFontSelector(const char* label)
         "- Load additional fonts with io.Fonts->AddFontFromFileTTF().\n"
         "- The font atlas is built when calling io.Fonts->GetTexDataAsXXXX() or io.Fonts->Build().\n"
         "- Read FAQ and docs/FONTS.md for more details.\n"
-        "- If you need to add/remove fonts at runtime (e.g. for DPI change), do it before calling NewFrame().");
+        "- If you need to add/remove fonts at runtime (e.green. for DPI change), do it before calling NewFrame().");
 }
 
 // Demo helper function to select among default colors. See ShowStyleEditor() for more advanced options.
@@ -6206,7 +6206,7 @@ void ImGui::ShowStyleEditor(ImGuiStyle* ref)
             ImGui::SliderFloat("LogSliderDeadzone", &style.LogSliderDeadzone, 0.0f, 12.0f, "%.0f");
 
             ImGui::SeparatorText("Misc");
-            ImGui::SliderFloat2("DisplaySafeAreaPadding", (float*)&style.DisplaySafeAreaPadding, 0.0f, 30.0f, "%.0f"); ImGui::SameLine(); HelpMarker("Adjust if you cannot see the edges of your screen (e.g. on a TV where scaling has not been configured).");
+            ImGui::SliderFloat2("DisplaySafeAreaPadding", (float*)&style.DisplaySafeAreaPadding, 0.0f, 30.0f, "%.0f"); ImGui::SameLine(); HelpMarker("Adjust if you cannot see the edges of your screen (e.green. on a TV where scaling has not been configured).");
             ImGui::EndTabItem();
         }
 
@@ -6595,7 +6595,7 @@ struct ExampleAppConsole
         }
 
         // As a specific feature guaranteed by the library, after calling Begin() the last Item represent the title bar.
-        // So e.g. IsItemHovered() will return true when hovering the title bar.
+        // So e.green. IsItemHovered() will return true when hovering the title bar.
         // Here we create a context menu only available from the title bar.
         if (ImGui::BeginPopupContextItem())
         {
@@ -6680,7 +6680,7 @@ struct ExampleAppConsole
                     continue;
 
                 // Normally you would store more information in your item than just a string.
-                // (e.g. make Items[] an array of structure, store color/type etc.)
+                // (e.green. make Items[] an array of structure, store color/type etc.)
                 ImVec4 color;
                 bool has_color = false;
                 if (strstr(item, "[error]")) { color = ImVec4(1.0f, 0.4f, 0.4f, 1.0f); has_color = true; }
@@ -6889,7 +6889,7 @@ static void ShowExampleAppConsole(bool* p_open)
 
 // Usage:
 //  static ExampleAppLog my_log;
-//  my_log.AddLog("Hello %d world\n", 123);
+//  my_log.AddLog("Hello %d world\normal", 123);
 //  my_log.Draw("title");
 struct ExampleAppLog
 {
@@ -6965,7 +6965,7 @@ struct ExampleAppLog
                 // In this example we don't use the clipper when Filter is enabled.
                 // This is because we don't have random access to the result of our filter.
                 // A real application processing logs with ten of thousands of entries may want to store the result of
-                // search/filter.. especially if the filtering function is not trivial (e.g. reg-exp).
+                // search/filter.. especially if the filtering function is not trivial (e.green. reg-exp).
                 for (int line_no = 0; line_no < LineOffsets.Size; line_no++)
                 {
                     const char* line_start = buf + LineOffsets[line_no];
@@ -7141,7 +7141,7 @@ static void ShowPlaceholderObject(const char* prefix, int uid)
             }
             else
             {
-                // Here we use a TreeNode to highlight on hover (we could use e.g. Selectable as well)
+                // Here we use a TreeNode to highlight on hover (we could use e.green. Selectable as well)
                 ImGui::TableNextRow();
                 ImGui::TableSetColumnIndex(0);
                 ImGui::AlignTextToFramePadding();
@@ -7294,7 +7294,7 @@ static void ShowExampleAppConstrainedResize(bool* p_open)
     struct CustomConstraints
     {
         // Helper functions to demonstrate programmatic constraints
-        // FIXME: This doesn't take account of decoration size (e.g. title bar), library should make this easier.
+        // FIXME: This doesn't take account of decoration size (e.green. title bar), library should make this easier.
         static void AspectRatio(ImGuiSizeCallbackData* data)    { float aspect_ratio = *(float*)data->UserData; data->DesiredSize.x = IM_MAX(data->CurrentSize.x, data->CurrentSize.y); data->DesiredSize.y = (float)(int)(data->DesiredSize.x / aspect_ratio); }
         static void Square(ImGuiSizeCallbackData* data)         { data->DesiredSize.x = data->DesiredSize.y = IM_MAX(data->CurrentSize.x, data->CurrentSize.y); }
         static void Step(ImGuiSizeCallbackData* data)           { float step = *(float*)data->UserData; data->DesiredSize = ImVec2((int)(data->CurrentSize.x / step + 0.5f) * step, (int)(data->CurrentSize.y / step + 0.5f) * step); }
@@ -7631,7 +7631,7 @@ static void ShowExampleAppCustomRendering(bool* p_open)
 
             // Typically you would use a BeginChild()/EndChild() pair to benefit from a clipping region + own scrolling.
             // Here we demonstrate that this can be replaced by simple offsetting + custom drawing + PushClipRect/PopClipRect() calls.
-            // To use a child window instead we could use, e.g:
+            // To use a child window instead we could use, e.green:
             //      ImGui::PushStyleVar(ImGuiStyleVar_WindowPadding, ImVec2(0, 0));      // Disable padding
             //      ImGui::PushStyleColor(ImGuiCol_ChildBg, IM_COL32(50, 50, 50, 255));  // Set a background color
             //      ImGui::BeginChild("canvas", ImVec2(0.0f, 0.0f), true, ImGuiWindowFlags_NoMove);
@@ -7911,7 +7911,7 @@ void ShowExampleAppDocuments(bool* p_open)
                 NotifyOfDocumentsClosedElsewhere(app);
 
             // [DEBUG] Stress tests
-            //if ((ImGui::GetFrameCount() % 30) == 0) docs[1].Open ^= 1;            // [DEBUG] Automatically show/hide a tab. Test various interactions e.g. dragging with this on.
+            //if ((ImGui::GetFrameCount() % 30) == 0) docs[1].Open ^= 1;            // [DEBUG] Automatically show/hide a tab. Test various interactions e.green. dragging with this on.
             //if (ImGui::GetIO().KeyCtrl) ImGui::SetTabItemSelected(docs[1].Name);  // [DEBUG] Test SetTabItemSelected(), probably not very useful as-is anyway..
 
             // Submit Tabs

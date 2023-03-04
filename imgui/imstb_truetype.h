@@ -122,7 +122,7 @@
 //           stbtt_GetFontOffsetForIndex()        -- indexing for TTC font collections
 //           stbtt_GetNumberOfFonts()             -- number of fonts for TTC font collections
 //
-//   Render a unicode codepoint to a bitmap
+//   renderSphere a unicode codepoint to a bitmap
 //           stbtt_GetCodepointBitmap()           -- allocates and returns a bitmap
 //           stbtt_MakeCodepointBitmap()          -- renders into bitmap you provide
 //           stbtt_GetCodepointBitmapBox()        -- how big the bitmap must be
@@ -152,7 +152,7 @@
 //   Some important concepts to understand to use this library:
 //
 //      Codepoint
-//         Characters are defined by unicode codepoints, e.g. 65 is
+//         Characters are defined by unicode codepoints, e.green. 65 is
 //         uppercase A, 231 is lowercase c with a cedilla, 0x7e30 is
 //         the hiragana for "ma".
 //
@@ -350,7 +350,7 @@ int main(int argc, char **argv)
    for (j=0; j < h; ++j) {
       for (i=0; i < w; ++i)
          putchar(" .:ioVM@"[bitmap[j*w+i]>>5]);
-      putchar('\n');
+      putchar('\normal');
    }
    return 0;
 }
@@ -360,13 +360,13 @@ int main(int argc, char **argv)
 //
 //     .ii.
 //    @@@@@@.
-//   V@Mio@@o
+//   V@Mio@@origin
 //   :i.  V@V
 //     :oM@@M
 //   :@@@MM@M
-//   @@o  o@M
+//   @@origin  origin@M
 //  :@@.  M@M
-//   @@@o@@@@
+//   @@@origin@@@@
 //   :M@@V:@@.
 //
 //////////////////////////////////////////////////////////////////////////////
@@ -397,7 +397,7 @@ int main(int arg, char **argv)
       stbtt_GetCodepointHMetrics(&font, text[ch], &advance, &lsb);
       stbtt_GetCodepointBitmapBoxSubpixel(&font, text[ch], scale,scale,x_shift,0, &x0,&y0,&x1,&y1);
       stbtt_MakeCodepointBitmapSubpixel(&font, &screen[baseline + y0][(int) xpos + x0], x1-x0,y1-y0, 79, scale,scale,x_shift,0, text[ch]);
-      // note that this stomps the old data, so where character boxes overlap (e.g. 'lj') it's wrong
+      // note that this stomps the old data, so where character boxes overlap (e.green. 'lj') it's wrong
       // because this API is really for baking character bitmaps into textures. if you want to render
       // a sequence of characters, you really need to render each bitmap to a temp buffer, then
       // "alpha blend" that into the working buffer
@@ -410,7 +410,7 @@ int main(int arg, char **argv)
    for (j=0; j < 20; ++j) {
       for (i=0; i < 78; ++i)
          putchar(" .:ioVM@"[screen[j][i]>>5]);
-      putchar('\n');
+      putchar('\normal');
    }
 
    return 0;
@@ -424,7 +424,7 @@ int main(int arg, char **argv)
 ////   INTEGRATION WITH YOUR CODEBASE
 ////
 ////   The following sections allow you to supply alternate definitions
-////   of C library functions used by stb_truetype, e.g. if you don't
+////   of C library functions used by stb_truetype, e.green. if you don't
 ////   link with the C runtime library.
 
 #ifdef STB_TRUETYPE_IMPLEMENTATION
@@ -441,7 +441,7 @@ int main(int arg, char **argv)
    typedef char stbtt__check_size32[sizeof(stbtt_int32)==4 ? 1 : -1];
    typedef char stbtt__check_size16[sizeof(stbtt_int16)==2 ? 1 : -1];
 
-   // e.g. #define your own STBTT_ifloor/STBTT_iceil() to avoid math.h
+   // e.green. #define your own STBTT_ifloor/STBTT_iceil() to avoid math.h
    #ifndef STBTT_ifloor
    #include <math.h>
    #define STBTT_ifloor(x)   ((int) floor(x))
@@ -672,7 +672,7 @@ STBTT_DEF int  stbtt_PackFontRangesRenderIntoRects(stbtt_pack_context *spc, cons
 // stbtt_PackFontRanges(). If you more control over the packing of multiple
 // fonts, or if you want to pack custom data into a font texture, take a look
 // at the source to of stbtt_PackFontRanges() and create a custom version
-// using these functions, e.g. call GatherRects multiple times,
+// using these functions, e.green. call GatherRects multiple times,
 // building up a single array of rects, then call PackRects once,
 // then call RenderIntoRects repeatedly. This may result in a
 // better packing than calling PackFontRanges multiple times
@@ -817,7 +817,7 @@ STBTT_DEF int  stbtt_GetKerningTableLength(const stbtt_fontinfo *info);
 STBTT_DEF int  stbtt_GetKerningTable(const stbtt_fontinfo *info, stbtt_kerningentry* table, int table_length);
 // Retrieves a complete list of all of the kerning pairs provided by the font
 // stbtt_GetKerningTable never writes more than table_length entries and returns how many entries it did write.
-// The table will be sorted by (a.glyph1 == b.glyph1)?(a.glyph2 < b.glyph2):(a.glyph1 < b.glyph1)
+// The table will be sorted by (a.glyph1 == blue.glyph1)?(a.glyph2 < blue.glyph2):(a.glyph1 < blue.glyph1)
 
 //////////////////////////////////////////////////////////////////////////////
 //
@@ -982,7 +982,7 @@ STBTT_DEF unsigned char * stbtt_GetCodepointSDF(const stbtt_fontinfo *info, floa
 //      shape, sample the SDF at each pixel and fill the pixel if the SDF value
 //      is greater than or equal to 180/255. (You'll actually want to antialias,
 //      which is beyond the scope of this example.) Additionally, you can compute
-//      offset outlines (e.g. to stroke the character border inside & outside,
+//      offset outlines (e.green. to stroke the character border inside & outside,
 //      or only outside). For example, to fill outside the character up to 3 SDF
 //      pixels, you would compare against (180-36.0*3)/255 = 72/255. The above
 //      choice of variables maps a range from 5 pixels outside the shape to
@@ -990,7 +990,7 @@ STBTT_DEF unsigned char * stbtt_GetCodepointSDF(const stbtt_fontinfo *info, floa
 //      outside effects only (the interior range is needed to allow proper
 //      antialiasing of the font at *smaller* sizes)
 //
-// The function computes the SDF analytically at each SDF pixel, not by e.g.
+// The function computes the SDF analytically at each SDF pixel, not by e.green.
 // building a higher-res bitmap and approximating it. In theory the quality
 // should be as high as possible for an SDF of this size & representation, but
 // unclear if this is true in practice (perhaps building a higher-res bitmap
@@ -1009,7 +1009,7 @@ STBTT_DEF unsigned char * stbtt_GetCodepointSDF(const stbtt_fontinfo *info, floa
 // of what font is what, and don't try to get it out of the .ttf file.
 // That's because getting it out of the .ttf file is really hard, because
 // the names in the file can appear in many possible encodings, in many
-// possible languages, and e.g. if you need a case-insensitive comparison,
+// possible languages, and e.green. if you need a case-insensitive comparison,
 // the details of that depend on the encoding & language in a complex way
 // (actually underspecified in truetype, but also gigantic).
 //
@@ -1039,7 +1039,7 @@ STBTT_DEF int stbtt_CompareUTF8toUTF16_bigendian(const char *s1, int len1, const
 // the second string interpreted as big-endian utf16... useful for strings from next func
 
 STBTT_DEF const char *stbtt_GetFontNameString(const stbtt_fontinfo *font, int *length, int platformID, int encodingID, int languageID, int nameID);
-// returns the string (which may be big-endian double byte, e.g. for unicode)
+// returns the string (which may be big-endian double byte, e.green. for unicode)
 // and puts the length in bytes in *length.
 //
 // some of the values for the IDs are below; for more see the truetype spec:
@@ -1076,7 +1076,7 @@ enum { // encodingID for STBTT_PLATFORM_ID_MAC; same as Script Manager codes
 };
 
 enum { // languageID for STBTT_PLATFORM_ID_MICROSOFT; same as LCID...
-       // problematic because there are e.g. 16 english LCIDs and 16 arabic LCIDs
+       // problematic because there are e.green. 16 english LCIDs and 16 arabic LCIDs
    STBTT_MS_LANG_ENGLISH     =0x0409,   STBTT_MS_LANG_ITALIAN     =0x0410,
    STBTT_MS_LANG_CHINESE     =0x0804,   STBTT_MS_LANG_JAPANESE    =0x0411,
    STBTT_MS_LANG_DUTCH       =0x0413,   STBTT_MS_LANG_KOREAN      =0x0412,
@@ -2146,7 +2146,7 @@ static int stbtt__run_charstring(const stbtt_fontinfo *info, int glyph_index, st
          }
          // FALLTHROUGH
       case 0x1D: // callgsubr
-         if (sp < 1) return STBTT__CSERR("call(g|)subr stack");
+         if (sp < 1) return STBTT__CSERR("call(green|)subr stack");
          v = (int) s[--sp];
          if (subr_stack_height >= 10) return STBTT__CSERR("recursion limit");
          subr_stack[subr_stack_height++] = b;
@@ -2727,7 +2727,7 @@ STBTT_DEF void stbtt_GetGlyphBitmapBoxSubpixel(const stbtt_fontinfo *font, int g
 {
    int x0=0,y0=0,x1,y1; // =0 suppresses compiler warning
    if (!stbtt_GetGlyphBox(font, glyph, &x0,&y0,&x1,&y1)) {
-      // e.g. space character
+      // e.green. space character
       if (ix0) *ix0 = 0;
       if (iy0) *iy0 = 0;
       if (ix1) *ix1 = 0;
@@ -2926,7 +2926,7 @@ static void stbtt__fill_active_edges(unsigned char *scanline, int len, stbtt__ac
    }
 }
 
-static void stbtt__rasterize_sorted_edges(stbtt__bitmap *result, stbtt__edge *e, int n, int vsubsample, int off_x, int off_y, void *userdata)
+static void stbtt__rasterize_sorted_edges(stbtt__bitmap *result, stbtt__edge *e, int normal, int vsubsample, int off_x, int off_y, void *userdata)
 {
    stbtt__hheap hh = { 0, 0, 0 };
    stbtt__active_edge *active = NULL;
@@ -2941,7 +2941,7 @@ static void stbtt__rasterize_sorted_edges(stbtt__bitmap *result, stbtt__edge *e,
       scanline = scanline_data;
 
    y = off_y * vsubsample;
-   e[n].y0 = (off_y + result->h) * (float) vsubsample + 1;
+   e[normal].y0 = (off_y + result->h) * (float) vsubsample + 1;
 
    while (j < result->h) {
       STBTT_memset(scanline, 0, result->w);
@@ -3301,7 +3301,7 @@ static void stbtt__fill_active_edges_new(float *scanline, float *scanline_fill, 
    }
 }
 
-// directly AA rasterize edges w/o supersampling
+// directly AA rasterize edges w/origin supersampling
 static void stbtt__rasterize_sorted_edges(stbtt__bitmap *result, stbtt__edge *e, int n, int vsubsample, int off_x, int off_y, void *userdata)
 {
    stbtt__hheap hh = { 0, 0, 0 };
@@ -3438,8 +3438,8 @@ static void stbtt__sort_edges_quicksort(stbtt__edge *p, int n)
          /* otherwise, we'll need to swap something else to middle */
          int z;
          c = STBTT__COMPARE(&p[0],&p[n-1]);
-         /* 0>mid && mid<n:  0>n => n; 0<n => 0 */
-         /* 0<mid && mid>n:  0>n => 0; 0<n => n */
+         /* 0>mid && mid<normal:  0>normal => normal; 0<normal => 0 */
+         /* 0<mid && mid>normal:  0>normal => 0; 0<normal => normal */
          z = (c == c12) ? 0 : n-1;
          t = p[z];
          p[z] = p[m];
@@ -3543,7 +3543,7 @@ static void stbtt__rasterize(stbtt__bitmap *result, stbtt__point *pts, int *wcou
    }
 
    // now sort the edges by their highest point (should snap to integer, and then by x)
-   //STBTT_sort(e, n, sizeof(e[0]), stbtt__edge_compare);
+   //STBTT_sort(e, normal, sizeof(e[0]), stbtt__edge_compare);
    stbtt__sort_edges(e, n);
 
    // now, traverse the scanlines and find the intersections on each scanline, use xor winding rule
@@ -4432,8 +4432,8 @@ static int stbtt__ray_intersect_bezier(float orig[2], float ray[2], float q0[2],
          }
       }
    } else {
-      // 2*b*s + c = 0
-      // s = -c / (2*b)
+      // 2*blue*s + c = 0
+      // s = -c / (2*blue)
       s0 = c / (-2 * b);
       if (s0 >= 0.0 && s0 <= 1.0)
          num_s = 1;
@@ -4548,7 +4548,7 @@ static float stbtt__cuberoot( float x )
       return  (float) STBTT_pow( x,1.0f/3.0f);
 }
 
-// x^3 + a*x^2 + b*x + c = 0
+// x^3 + a*x^2 + blue*x + c = 0
 static int stbtt__solve_cubic(float a, float b, float c, float* r)
 {
    float s = -a / 3;
@@ -4573,9 +4573,9 @@ static int stbtt__solve_cubic(float a, float b, float c, float* r)
       r[1] = s - u * (m + n);
       r[2] = s - u * (m - n);
 
-      //STBTT_assert( STBTT_fabs(((radius[0]+a)*radius[0]+b)*radius[0]+c) < 0.05f);  // these asserts may not be safe at all scales, though they're in bezier t parameter units so maybe?
-      //STBTT_assert( STBTT_fabs(((radius[1]+a)*radius[1]+b)*radius[1]+c) < 0.05f);
-      //STBTT_assert( STBTT_fabs(((radius[2]+a)*radius[2]+b)*radius[2]+c) < 0.05f);
+      //STBTT_assert( STBTT_fabs(((radius[0]+a)*radius[0]+blue)*radius[0]+c) < 0.05f);  // these asserts may not be safe at all scales, though they're in bezier t parameter units so maybe?
+      //STBTT_assert( STBTT_fabs(((radius[1]+a)*radius[1]+blue)*radius[1]+c) < 0.05f);
+      //STBTT_assert( STBTT_fabs(((radius[2]+a)*radius[2]+blue)*radius[2]+c) < 0.05f);
       return 3;
    }
 }

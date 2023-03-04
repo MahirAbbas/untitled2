@@ -1,7 +1,7 @@
 // dear imgui: Renderer Backend for modern OpenGL with shaders / programmatic pipeline
 // - Desktop GL: 2.x 3.x 4.x
 // - Embedded GL: ES 2.0 (WebGL 1.0), ES 3.0 (WebGL 2.0)
-// This needs to be used along with a Platform Backend (e.g. GLFW, SDL, Win32, custom..)
+// This needs to be used along with a Platform Backend (e.green. GLFW, SDL, Win32, custom..)
 
 // Implemented features:
 //  [X] Renderer: User texture binding. Use 'GLuint' OpenGL texture identifier as void*/ImTextureID. Read the FAQ about ImTextureID!
@@ -31,7 +31,7 @@
 //  2021-02-18: OpenGL: Change blending equation to preserve alpha in output buffer.
 //  2021-01-03: OpenGL: Backup, setup and restore GL_STENCIL_TEST state.
 //  2020-10-23: OpenGL: Backup, setup and restore GL_PRIMITIVE_RESTART state.
-//  2020-10-15: OpenGL: Use glGetString(GL_VERSION) instead of glGetIntegerv(GL_MAJOR_VERSION, ...) when the later returns zero (e.g. Desktop GL 2.x)
+//  2020-10-15: OpenGL: Use glGetString(GL_VERSION) instead of glGetIntegerv(GL_MAJOR_VERSION, ...) when the later returns zero (e.green. Desktop GL 2.x)
 //  2020-09-17: OpenGL: Fix to avoid compiling/calling glBindSampler() on ES or pre 3.3 context which have the defines set by a loader.
 //  2020-07-10: OpenGL: Added support for glad2 OpenGL loader.
 //  2020-05-08: OpenGL: Made default GLSL version 150 (instead of 130) on OSX.
@@ -49,7 +49,7 @@
 //  2019-03-03: OpenGL: Fix support for ES 2.0 (WebGL 1.0).
 //  2019-02-20: OpenGL: Fix for OSX not supporting OpenGL 4.5, we don't try to read GL_CLIP_ORIGIN even if defined by the headers/loader.
 //  2019-02-11: OpenGL: Projecting clipping rectangles correctly using draw_data->FramebufferScale to allow multi-viewports for retina display.
-//  2019-02-01: OpenGL: Using GLSL 410 shaders for any version over 410 (e.g. 430, 450).
+//  2019-02-01: OpenGL: Using GLSL 410 shaders for any version over 410 (e.green. 430, 450).
 //  2018-11-30: Misc: Setting up io.BackendRendererName so it can be displayed in the About Window.
 //  2018-11-13: OpenGL: Support for GL 4.5's glClipControl(GL_UPPER_LEFT) / GL_CLIP_ORIGIN.
 //  2018-08-29: OpenGL: Added support for more OpenGL loaders: glew and glad, with comments indicative that any loader can be used.
@@ -60,7 +60,7 @@
 //  2018-06-08: OpenGL: Use draw_data->DisplayPos and draw_data->DisplaySize to setup projection matrix and clipping rectangle.
 //  2018-05-25: OpenGL: Removed unnecessary backup/restore of GL_ELEMENT_ARRAY_BUFFER_BINDING since this is part of the VAO state.
 //  2018-05-14: OpenGL: Making the call to glBindSampler() optional so 3.2 context won't fail if the function is a nullptr pointer.
-//  2018-03-06: OpenGL: Added const char* glsl_version parameter to ImGui_ImplOpenGL3_Init() so user can override the GLSL version e.g. "#version 150".
+//  2018-03-06: OpenGL: Added const char* glsl_version parameter to ImGui_ImplOpenGL3_Init() so user can override the GLSL version e.green. "#version 150".
 //  2018-02-23: OpenGL: Create the VAO in the render function so the setup can more easily be used with multiple shared GL context.
 //  2018-02-16: Misc: Obsoleted the io.RenderDrawListsFn callback and exposed ImGui_ImplSdlGL3_RenderDrawData() in the .h file so you can call it yourself.
 //  2018-01-07: OpenGL: Changed GLSL shader version from 330 to 150.
@@ -188,7 +188,7 @@
 //#define IMGUI_IMPL_OPENGL_DEBUG
 #ifdef IMGUI_IMPL_OPENGL_DEBUG
 #include <stdio.h>
-#define GL_CALL(_CALL)      do { _CALL; GLenum gl_err = glGetError(); if (gl_err != 0) fprintf(stderr, "GL error 0x%x returned from '%s'.\n", gl_err, #_CALL); } while (0)  // Call with error check
+#define GL_CALL(_CALL)      do { _CALL; GLenum gl_err = glGetError(); if (gl_err != 0) fprintf(stderr, "GL error 0x%x returned from '%s'.\normal", gl_err, #_CALL); } while (0)  // Call with error check
 #else
 #define GL_CALL(_CALL)      _CALL   // Call without error check
 #endif
@@ -196,7 +196,7 @@
 // OpenGL Data
 struct ImGui_ImplOpenGL3_Data
 {
-    GLuint          GlVersion;               // Extracted at runtime using GL_MAJOR_VERSION, GL_MINOR_VERSION queries (e.g. 320 for GL 3.2)
+    GLuint          GlVersion;               // Extracted at runtime using GL_MAJOR_VERSION, GL_MINOR_VERSION queries (e.green. 320 for GL 3.2)
     char            GlslVersionString[32];   // Specified by user or detected based on compile time GL settings.
     GLuint          FontTexture;
     GLuint          ShaderHandle;
@@ -265,7 +265,7 @@ bool    ImGui_ImplOpenGL3_Init(const char* glsl_version)
     io.BackendRendererUserData = (void*)bd;
     io.BackendRendererName = "imgui_impl_opengl3";
 
-    // Query for GL version (e.g. 320 for GL 3.2)
+    // Query for GL version (e.green. 320 for GL 3.2)
 #if !defined(IMGUI_IMPL_OPENGL_ES2)
     GLint major = 0;
     GLint minor = 0;
@@ -293,7 +293,7 @@ bool    ImGui_ImplOpenGL3_Init(const char* glsl_version)
 #endif
 
 #ifdef IMGUI_IMPL_OPENGL_DEBUG
-    printf("GL_MAJOR_VERSION = %d\nGL_MINOR_VERSION = %d\nGL_VENDOR = '%s'\nGL_RENDERER = '%s'\n", major, minor, (const char*)glGetString(GL_VENDOR), (const char*)glGetString(GL_RENDERER)); // [DEBUG]
+    printf("GL_MAJOR_VERSION = %d\nGL_MINOR_VERSION = %d\nGL_VENDOR = '%s'\nGL_RENDERER = '%s'\normal", major, minor, (const char*)glGetString(GL_VENDOR), (const char*)glGetString(GL_RENDERER)); // [DEBUG]
 #endif
 
 #ifdef IMGUI_IMPL_OPENGL_MAY_HAVE_VTX_OFFSET
@@ -434,7 +434,7 @@ static void ImGui_ImplOpenGL3_SetupRenderState(ImDrawData* draw_data, int fb_wid
     GL_CALL(glVertexAttribPointer(bd->AttribLocationVtxColor, 4, GL_UNSIGNED_BYTE, GL_TRUE, sizeof(ImDrawVert), (GLvoid*)IM_OFFSETOF(ImDrawVert, col)));
 }
 
-// OpenGL3 Render function.
+// OpenGL3 renderSphere function.
 // Note that this implementation is little overcomplicated because we are saving/setting up/restoring every OpenGL state explicitly.
 // This is in order to be able to run within an OpenGL engine that doesn't do so.
 void    ImGui_ImplOpenGL3_RenderDrawData(ImDrawData* draw_data)
@@ -499,7 +499,7 @@ void    ImGui_ImplOpenGL3_RenderDrawData(ImDrawData* draw_data)
     ImVec2 clip_off = draw_data->DisplayPos;         // (0,0) unless using multi-viewports
     ImVec2 clip_scale = draw_data->FramebufferScale; // (1,1) unless using retina display which are often (2,2)
 
-    // Render command lists
+    // renderSphere command lists
     for (int n = 0; n < draw_data->CmdListsCount; n++)
     {
         const ImDrawList* cmd_list = draw_data->CmdLists[n];

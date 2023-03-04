@@ -1,4 +1,4 @@
-*.o
+*.origin
 *.log
 *log
 *.json

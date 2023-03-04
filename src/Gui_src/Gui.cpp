@@ -11,13 +11,13 @@
 #include "../Sphere/Sphere.h"
 #include "../Scene/Scene.h"
 
-Gui::Gui(int width, int height) {
+Gui::Gui(int width, int height, Scene sphereScene) {
 
     this->width = 600;
     this->height = 400;
     r = g = b = 0.f;
     text = "";
-    sphereScene = Scene(600, 400);
+    this->sphereScene = Scene(600, 400, Light(1, 1, 1, Vector(100, 100, 0)) );
 
     UpdateTexture();
 };
@@ -39,16 +39,13 @@ void Gui::UpdateTexture() {
 
 //    unsigned char *pixelData = new unsigned char[width * height * 4];
 
-//        unsigned char* pixelData2 = new unsigned char [width * height * 4];
-//        unsigned char* pixelData3 = pixelData + pixelData2;
-//        unsigned char B = (unsigned char)255 * b, R = (unsigned char)255 * radius, G = (unsigned char)255 * g;
 
 //    for (int y = 0; y < height; y++) {
 //        for (int x = 0; x < width; x++) {
 //            int index = y * width * 4 + x * 4;
-//// Line Origin
+
 //            sphere.setOrigin(Vector(x - w, y - h, 0));
-//            sphere.v = sphere.o - sphere.Cs;
+//            sphere.v = sphere.origin - sphere.Cs;
 //            sphere.calculations();
 //            pixelData[index] = sphere.intensity * sphere.material.colourRed;           // R
 //            pixelData[index + 1] = sphere.intensity * sphere.material.colourGreen;       // G

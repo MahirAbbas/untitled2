@@ -53,6 +53,10 @@ public:
         Vector new_vec(x * d, y * d, z * d);
         return new_vec;
     }
+    Vector componentMultiply(Vector v)
+    {
+        return Vector(x*v.x, y*v.y, z*v.z);
+    }
     void print() {
         std::cout << "x=" << x << ", y=" << y << ", z=" << z << "\n";
     }

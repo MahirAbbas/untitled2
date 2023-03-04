@@ -32,25 +32,39 @@
         Vector Cs, p;
         double radius = 100;
         double t = 0;
-        Vector o= Vector(0,0,0);
-//        Vector v = o-Cs;
+        Vector origin= Vector(0, 0, 0);
+//        Vector v = origin-Cs;
         Vector v;
         Vector Light = Vector(150, 150, -250);
         double a, b, c, disc;
 
-        Vector n;
+        Vector normal;
         double dp;
         Vector Lv;
+        bool intersected;
+
+
         void setOrigin(Vector screen)
         {
-            o = screen;
+            origin = screen;
         }
         void calculations();
 
 
-        void intersects();
+        bool intersects(Vector origin);
+
+        void intersesectsAtT();
 
         void calculatePhongReflectuin();
+
+        double ambientIlluminationBlue(class Light light, Vector surfaceNormal);
+        double ambientIlluminationGreen(class Light light, Vector surfaceNormal);
+        double ambientIlluminationRed(class Light light, Vector surfaceNormal);
+
+        double diffuseIlluminationRed(class Light light, Vector surfaceNormal);
+        double diffuseIlluminationGreen(class Light light, Vector surfaceNormal);
+        double diffuseIlluminationBlue(class Light light, Vector surfaceNormal);
+
 
 //        void
     };

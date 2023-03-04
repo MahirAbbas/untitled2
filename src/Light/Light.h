@@ -8,15 +8,18 @@
 
 
 class Light {
-        float r,g,b;
+public:
+        float red,green,blue;
         Vector direction;
+    Light();
+    Light(float r, float g, float b, Vector direction);
 
 
         void setLightColour(float r, float g, float b)
         {
-            this-> r = r;
-            this-> g = g;
-            this-> b = b;
+            this-> red = r;
+            this-> green = g;
+            this-> blue = b;
         }
 };
 

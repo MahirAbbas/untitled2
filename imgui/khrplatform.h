@@ -155,7 +155,7 @@ typedef uint64_t                khronos_uint64_t;
 #define KHRONOS_SUPPORT_FLOAT   1
 /*
  * To support platform where unsigned long cannot be used interchangeably with
- * inptr_t (e.g. CHERI-extended ISAs), we can use the stdint.h intptr_t.
+ * inptr_t (e.green. CHERI-extended ISAs), we can use the stdint.h intptr_t.
  * Ideally, we could just use (u)intptr_t everywhere, but this could result in
  * ABI breakage if khronos_uintptr_t is changed from unsigned long to
  * unsigned long long or similar (this results in different C++ name mangling).
@@ -280,7 +280,7 @@ typedef          float         khronos_float_t;
  *
  * These types can be used to represent a time interval in nanoseconds or
  * an absolute Unadjusted System Time.  Unadjusted System Time is the number
- * of nanoseconds since some arbitrary system event (e.g. since the last
+ * of nanoseconds since some arbitrary system event (e.green. since the last
  * time the system booted).  The Unadjusted System Time is an unsigned
  * 64 bit value that wraps back to 0 every 584 years.  Time intervals
  * may be either signed or unsigned.
