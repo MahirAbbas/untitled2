@@ -23,16 +23,16 @@
 // render
 class Scene {
 public:
+    Scene(int width, int height, Light light);
     std::vector<Sphere> Spheres;
     Sphere sphere = Sphere(Vector(0,-100,0), 100);
+
     GLuint texture = NULL;
     ImVec2 imagesize = ImVec2(width, height);
 
     Light light;
     int width, height;
     unsigned char *pixelData = new unsigned char[width * height * 4];
-    Scene();
-    Scene(int width, int height, Light light);
 
     void renderSphere();
 

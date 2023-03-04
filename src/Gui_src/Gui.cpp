@@ -11,7 +11,7 @@
 #include "../Sphere/Sphere.h"
 #include "../Scene/Scene.h"
 
-Gui::Gui(int width, int height, Scene sphereScene) {
+Gui::Gui(int width, int height, Scene sphereScene, Scene sphereScene1) : sphereScene(sphereScene1) {
 
     this->width = 600;
     this->height = 400;
@@ -36,31 +36,7 @@ void Gui::UpdateTexture() {
     if (ImGui::SliderFloat("light y", &sphere.Light.y, -height, height));
     if (ImGui::SliderFloat("light z", &sphere.Light.z, -height, height));
 
-
-//    unsigned char *pixelData = new unsigned char[width * height * 4];
-
-
-//    for (int y = 0; y < height; y++) {
-//        for (int x = 0; x < width; x++) {
-//            int index = y * width * 4 + x * 4;
-
-//            sphere.setOrigin(Vector(x - w, y - h, 0));
-//            sphere.v = sphere.origin - sphere.Cs;
-//            sphere.calculations();
-//            pixelData[index] = sphere.intensity * sphere.material.colourRed;           // R
-//            pixelData[index + 1] = sphere.intensity * sphere.material.colourGreen;       // G
-//            pixelData[index + 2] = sphere.intensity * sphere.material.colourBlue;       // B
-//            pixelData[index + 3] = 255;     // A
-//
-//        }
-//    }
-//    glGenTextures(1, &texture);
-//    glBindTexture(GL_TEXTURE_2D, texture);
-//    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
-//    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
-//    glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, width, height, 0, GL_RGBA, GL_UNSIGNED_BYTE, pixelData);
-//    glBindTexture(GL_TEXTURE_2D, 0);
-//    ImGui::Image(reinterpret_cast<void *>(texture), imagesize);
+    sphereScene.renderSphere();
 }
 
 

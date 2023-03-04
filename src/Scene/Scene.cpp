@@ -1,9 +1,4 @@
-//
-// Created by mahir on 27/02/23.
-//
-
 #include "Scene.h"
-
 
 //TODO
 // spawn sphere
@@ -11,21 +6,15 @@
 // imgui/texture
 // GUI/sliders
 // render
-
-Scene::Scene() {};
-
 Scene::Scene(int width, int height, Light light) {
     this->width = width;
     this->height = height;
     this->light = light;
-
 }
-
-
 
 void Scene::renderSphere() {
     Vector origin = Vector(0, 0, 0);
-
+    Spheres.push_back(sphere);
     unsigned char *pixelData = new unsigned char[width * height * 4];
 
     const int w = width / 2, h = height / 2;
@@ -38,7 +27,7 @@ void Scene::renderSphere() {
             for (auto& sphere: Spheres) {
                 double t;
                 if (sphere.intersects(origin)) {
-                    std::cout << " intersects" << "\n";
+//                    std::cout << " intersects" << "\n";
                     sphere.intersesectsAtT();
                     if (sphere.t < closestSphere.t) {
                         closestSphere = sphere;

@@ -43,7 +43,9 @@ int main() {
         ImGui::NewFrame();
 
         {
-            Gui newGui = Gui(600, 400, Scene(600, 400, Light(1, 1, 1, Vector(100, 100, 100))));
+            Scene scene = Scene(600,400, Light(1,1,1,Vector(100,100,1)));
+            Gui newGui = Gui(600, 400, scene, Scene(0, 0, Light()));
+
 
 //            static Gui myGui = Gui(600,400);
             static float red,green, blue;
@@ -65,9 +67,7 @@ int main() {
 
             ImGui::Separator();
 
-
-
-                newGui.Update();
+            newGui.Update();
 
 
 //            glDeleteTextures(1, &testTexture);
