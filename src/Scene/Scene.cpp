@@ -7,9 +7,14 @@
 // GUI/sliders
 // render
 Scene::Scene(int width, int height, Light light) {
-    this->width = width;
-    this->height = height;
-    this->light = light;
+    try {
+        this->width = width;
+        this->height = height;
+        this->light = light;
+    } catch (std::exception& e)
+    {
+        std::cerr << e.what() << "thrown here" << std::endl;
+    }
 }
 
 void Scene::renderSphere() {

@@ -11,13 +11,13 @@
 #include "../Sphere/Sphere.h"
 #include "../Scene/Scene.h"
 
-Gui::Gui(int width, int height, Scene sphereScene, Scene sphereScene1) : sphereScene(sphereScene1) {
+Gui::Gui(int width, int height, Scene sphereScene) : sphereScene(sphereScene) {
 
-    this->width = 600;
-    this->height = 400;
+    this->width = width;
+    this->height = height;
     r = g = b = 0.f;
     text = "";
-    this->sphereScene = Scene(600, 400, Light(1, 1, 1, Vector(100, 100, 0)) );
+    this->sphereScene = sphereScene;
 
     UpdateTexture();
 };
@@ -29,12 +29,12 @@ void Gui::UpdateTexture() {
     ImVec2 imagesize = ImVec2(width, height);
 
     float spherex = 0;
-    if (ImGui::SliderFloat("Sphere x", &sphere.Cs.x, -height, height));
-    if (ImGui::SliderFloat("Sphere y", &sphere.Cs.y, -height, height));
-    if (ImGui::SliderFloat("Sphere z", &sphere.Cs.z, -height, height));
-    if (ImGui::SliderFloat("light x", &sphere.Light.x, -width, width));
-    if (ImGui::SliderFloat("light y", &sphere.Light.y, -height, height));
-    if (ImGui::SliderFloat("light z", &sphere.Light.z, -height, height));
+//    if (ImGui::SliderFloat("Sphere x", &sphere.Cs.x, -height, height));
+//    if (ImGui::SliderFloat("Sphere y", &sphere.Cs.y, -height, height));
+//    if (ImGui::SliderFloat("Sphere z", &sphere.Cs.z, -height, height));
+//    if (ImGui::SliderFloat("light x", &sphere.Light.x, -width, width));
+//    if (ImGui::SliderFloat("light y", &sphere.Light.y, -height, height));
+//    if (ImGui::SliderFloat("light z", &sphere.Light.z, -height, height));
 
     sphereScene.renderSphere();
 }

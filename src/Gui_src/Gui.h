@@ -30,7 +30,7 @@
 
         Scene sphereScene;
 
-        explicit Gui(int width, int height, Scene sphereScene, Scene sphereScene1);
+        Gui(int width, int height, Scene sphereScene );
 
         const std::string GetText() { return text; }
 

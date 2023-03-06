@@ -9,8 +9,8 @@
 
 class Light {
 public:
-        float red,green,blue;
-        Vector direction;
+    float red,green,blue;
+    Vector direction;
     Light();
     Light(float r, float g, float b, Vector direction);
 

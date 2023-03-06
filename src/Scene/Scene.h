@@ -23,6 +23,8 @@
 // render
 class Scene {
 public:
+
+    int width, height;
     Scene(int width, int height, Light light);
     std::vector<Sphere> Spheres;
     Sphere sphere = Sphere(Vector(0,-100,0), 100);
@@ -31,7 +33,6 @@ public:
     ImVec2 imagesize = ImVec2(width, height);
 
     Light light;
-    int width, height;
     unsigned char *pixelData = new unsigned char[width * height * 4];
 
     void renderSphere();
