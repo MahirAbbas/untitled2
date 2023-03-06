@@ -11,19 +11,25 @@ Sphere::Sphere(Vector cs, double radius){
     this->Cs = cs;
     this->radius = radius;
 };
-void Sphere::calculations()
+void Sphere::calculations(Vector v)
 {
     a = d.dot(d);
     b = 2*v.dot(d);
     c = v.dot(v)-(radius * radius);
+//    printf("(%d,%d,%d)", d.x,d.y,d.z);
+//    printf("a: %d \n B: %d \n C:%d", a,b,c);
     disc = (b*b)-4*a*c;
     if (disc < 0) intensity = 0;
     else
     {
         intensity = 1;
     }
+
     t = (-b- sqrt(disc))/2*a;
+//    std::cout << t << "\n";
     p = origin + d * t;
+//    std::cout << "("<<p.x << "," << p.y << p.??z <<")" << "\n";
+//    printf("(%d,%d,%d)", p.x,p.y,p.z);
     Lv = Light-p;
 //            Lv.normalise();
 //            Why doesn't normalise work?

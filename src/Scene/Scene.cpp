@@ -16,7 +16,7 @@ Scene::Scene(int width, int height, Light light) {
 void Scene::renderSphere() {
     Vector origin = Vector(0, 0, 0);
     Spheres.push_back(sphere);
-    unsigned char *pixelData = new unsigned char[width * height * 4];
+    unsigned char* pixelData = new unsigned char[width * height * 4];
     const int w = width / 2, h = height / 2;
     for (int y = 0; y < height; y++){
         for (int x = 0; x < width; x++) {
@@ -42,17 +42,26 @@ void Scene::renderSphere() {
 
             sphere.setOrigin(Vector(x - w, y - h, 0));
             Vector v = sphere.origin - sphere.Cs;
-            sphere.calculations();
-//            pixelData[index] = sphere.intensity * sphere.material.colourRed;           // R
-            pixelData[index] = closestSphere.diffuseIlluminationRed(light, normal) +
-                               closestSphere.ambientIlluminationRed(light, normal); //R
-//            pixelData[index + 1] = sphere.intensity * sphere.material.colourGreen;       // G
-            pixelData[index + 1] = closestSphere.diffuseIlluminationGreen(light, normal) +
-                                   closestSphere.ambientIlluminationGreen(light, normal); //G
-//            pixelData[index + 2] = sphere.intensity * sphere.material.colourBlue;       // B
-            pixelData[index + 2] = closestSphere.diffuseIlluminationBlue(light, normal) +
-                                   closestSphere.ambientIlluminationBlue(light, normal); //B
+            sphere.calculations(v);
+            pixelData[index] = sphere.intensity * sphere.material.colourRed;           // R
+
+//            pixelData[index] = closestSphere.diffuseIlluminationRed(light, normal) +
+//                               closestSphere.ambientIlluminationRed(light, normal); //R
+
+//                               std::cout << "calculated" << std::endl;
+//            std::cout << closestSphere.diffuseIlluminationBlue(light, normal) << "\n";
+
+            pixelData[index + 1] = sphere.intensity * sphere.material.colourGreen;       // G
+
+//            pixelData[index + 1] = closestSphere.diffuseIlluminationGreen(light, normal) +
+//                                   closestSphere.ambientIlluminationGreen(light, normal); //G
+
+            pixelData[index + 2] = sphere.intensity * sphere.material.colourBlue;       // B
+
+//            pixelData[index + 2] = closestSphere.diffuseIlluminationBlue(light, normal) +
+//                                   closestSphere.ambientIlluminationBlue(light, normal); //B
 //            pixelData[index + 3] = 255;     // A
+
             pixelData[index + 3] = 255;     // A
 
         }
@@ -63,6 +72,7 @@ void Scene::renderSphere() {
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
     glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, width, height, 0, GL_RGBA, GL_UNSIGNED_BYTE, pixelData);
     glBindTexture(GL_TEXTURE_2D, 0);
+
     ImGui::Image(reinterpret_cast<void *>(texture), imagesize);
 }
 

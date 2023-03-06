@@ -34,7 +34,7 @@
         double t = 0;
         Vector origin= Vector(0, 0, 0);
 //        Vector v = origin-Cs;
-        Vector v;
+//        Vector v;
         Vector Light = Vector(150, 150, -250);
         double a, b, c, disc;
 
@@ -48,7 +48,7 @@
         {
             origin = screen;
         }
-        void calculations();
+        void calculations(Vector v);
 
 
         bool intersects(Vector origin);

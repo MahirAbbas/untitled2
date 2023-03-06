@@ -19,11 +19,10 @@ Gui::Gui(int width, int height, Scene sphereScene) : sphereScene(sphereScene) {
     text = "";
     this->sphereScene = sphereScene;
 
-    UpdateTexture();
+//    UpdateTexture();
 };
 
-void Gui::UpdateTexture() {
-
+void Gui::UpdateTexture() { //
     Sphere sphere = Sphere(Vector(0, -100, 0), 100);
     const int w = width / 2, h = height / 2;
     ImVec2 imagesize = ImVec2(width, height);
