@@ -33,47 +33,55 @@ int main() {
 
     bool show_demo_window = true;
     bool show_another_window = false;
-
-    while (!glfwWindowShouldClose(window))
-    {
+    try {
+        while (!glfwWindowShouldClose(window)) {
 //        using namespace ImGui;
 
-        ImGui_ImplOpenGL3_NewFrame();
-        ImGui_ImplGlfw_NewFrame();
-        ImGui::NewFrame();
+            ImGui_ImplOpenGL3_NewFrame();
+            ImGui_ImplGlfw_NewFrame();
+            ImGui::NewFrame();
 
-        {
-            Scene scene = Scene(600,400, Light(1,1,1,Vector(100,100,1)));
-            Gui newGui = Gui(600, 400, scene, Scene(0, 0, Light()));
+            {
+                Scene scene = Scene(600, 400, Light(1, 1, 1, Vector(100, 100, 1)));
+                Gui newGui = Gui(600, 400, scene, Scene(0, 0, Light()));
 
 
 //            static Gui myGui = Gui(600,400);
-            static float red,green, blue;
-            ImGui::Begin("Test2", NULL, ImGuiWindowFlags_AlwaysAutoResize);
-            ImGui::PushItemWidth(200) ;
+                static float red, green, blue;
+                ImGui::Begin("Test2", NULL, ImGuiWindowFlags_AlwaysAutoResize);
+                ImGui::PushItemWidth(200);
 
 //            (ImGui::SliderFloat("green", &myGui.sphere.material.colourGreen, 0.f, 1.f));
 //            (ImGui::SliderFloat("red", &myGui.sphere.material.colourRed, 0.f, 1.f));
 //            (ImGui::SliderFloat("blue", &myGui.sphere.material.colourBlue, 0.f, 1.f));
 //            ImGui::Separator();
 
-            ImGui::TextWrapped("Debug Window");
-            ImGui::Text("Application average %.3f ms/frame (%.1f FPS)", 1000.0f / ImGui::GetIO().Framerate, ImGui::GetIO().Framerate);
+                ImGui::TextWrapped("Debug Window");
+                ImGui::Text("Application average %.3f ms/frame (%.1f FPS)", 1000.0f / ImGui::GetIO().Framerate,
+                            ImGui::GetIO().Framerate);
 //            ImGui::Text("col: %.1f", myGui.Sphere.col);
-            ImGui::PushStyleColor(ImGuiCol_ChildBg, IM_COL32(127, 127, 127, 100));
-            ImGui::BeginChild("Debug_win", ImVec2(400,200), true, ImGuiWindowFlags_None);
-            ImGui::TextWrapped(newGui.GetText().c_str());
-            ImGui::EndChild();
+                ImGui::PushStyleColor(ImGuiCol_ChildBg, IM_COL32(127, 127, 127, 100));
+                ImGui::BeginChild("Debug_win", ImVec2(400, 200), true, ImGuiWindowFlags_None);
+                ImGui::TextWrapped(newGui.GetText().c_str());
+                ImGui::EndChild();
 
-            ImGui::Separator();
-
-            newGui.Update();
-
+                ImGui::Separator();
+                newGui.Update();
 
 //            glDeleteTextures(1, &testTexture);
-            ImGui::PopItemWidth();
-            ImGui::PopStyleColor();
-            ImGui::End();
+                ImGui::PopItemWidth();
+                ImGui::PopStyleColor();
+                ImGui::End();
+            }
+
+        }
+    } catch (const std::bad_alloc& e)
+        {
+            std::cerr << e.what() << "\n";
+        }
+        catch (const std::exception& e)
+        {
+            std::cerr << e.what() << "\n";
         }
 
         ImGui::Render();
@@ -90,7 +98,7 @@ int main() {
 //        std::vector<int> ints;
 //        ints.push_back(2);
 
-    }
+
 
     ImGui_ImplOpenGL3_Shutdown();
     ImGui::DestroyContext();
