@@ -27,10 +27,10 @@ public:
     int width, height;
     Scene(int width, int height, Light light);
     std::vector<Sphere> Spheres;
-    Sphere sphere = Sphere(Vector(0,-100,0), 200);
+    Sphere sphere = Sphere(Vector(0,-100,1200), 300);
 
     GLuint texture = NULL;
-    ImVec2 imagesize = ImVec2(width, height);
+    ImVec2 imagesize = ImVec2(600, 400);
 
     Light light;
 //    unsigned char *pixelData = new unsigned char[width * height * 4];

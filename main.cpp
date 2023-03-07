@@ -53,7 +53,10 @@ int main() {
 
         ImGui::Begin("Test2", NULL, ImGuiWindowFlags_AlwaysAutoResize);
         ImGui::PushItemWidth(200);
-
+        int test = 100;
+        if (ImGui::SliderFloat("Sphere x", &newGui.sphereScene.sphere.Cs.x, -600, 500));
+        if (ImGui::SliderFloat("Sphere y", &newGui.sphereScene.sphere.Cs.y, -600, 500));
+        if (ImGui::SliderFloat("Sphere z", &newGui.sphereScene.sphere.Cs.z, -600, 500));
 //            (ImGui::SliderFloat("green", &myGui.sphere.material.colourGreen, 0.f, 1.f));
 //            (ImGui::SliderFloat("red", &myGui.sphere.material.colourRed, 0.f, 1.f));
 //            (ImGui::SliderFloat("blue", &myGui.sphere.material.colourBlue, 0.f, 1.f));
@@ -67,7 +70,6 @@ int main() {
         ImGui::BeginChild("Debug_win", ImVec2(400, 200), true, ImGuiWindowFlags_None);
 //            ImGui::TextWrapped(newGui.GetText().c_str());
         ImGui::EndChild();
-
         ImGui::Separator();
         newGui.Update();
 

@@ -12,6 +12,7 @@
 #include <GLFW/glfw3.h>
 #include <GL/gl.h>
 #include "../Material/Material.h"
+#include "../Light/Light.h"
 
 //TODO VECTOR D AS CONSTRUCTOR, AND Cs, Origin etc
     class Sphere {
@@ -30,7 +31,7 @@
         // radius = radius of Sphere (scalar)
         // Cs - origin of the Sphere
         Vector Cs, p;
-        double radius = 100;
+        double radius ;
         double t = 0;
         Vector origin= Vector(0, 0, 0);
 //        Vector v = origin-Cs;
@@ -48,7 +49,7 @@
         {
             origin = screen;
         }
-        void calculations(Vector v);
+        void calculations(Vector v, class Light light);
 
 
         bool intersects(Vector origin);

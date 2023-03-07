@@ -27,8 +27,7 @@ void Gui::UpdateTexture() { //
     const int w = width / 2, h = height / 2;
     ImVec2 imagesize = ImVec2(width, height);
 
-    float spherex = 0;
-//    if (ImGui::SliderFloat("Sphere x", &sphere.Cs.x, -height, height));
+//    if (ImGui::SliderFloat("Sphere x", &spheres[0].Cs.x, -height, height));
 //    if (ImGui::SliderFloat("Sphere y", &sphere.Cs.y, -height, height));
 //    if (ImGui::SliderFloat("Sphere z", &sphere.Cs.z, -height, height));
 //    if (ImGui::SliderFloat("light x", &sphere.Light.x, -width, width));

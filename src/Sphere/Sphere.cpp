@@ -10,8 +10,11 @@ Sphere::Sphere(Vector cs, double radius){
 
     this->Cs = cs;
     this->radius = radius;
+    material.diffuseRed = 1;
+    material.diffuseBlue= 1;
+    material.diffuseGreen = 1;
 };
-void Sphere::calculations(Vector v)
+void Sphere::calculations(Vector v, class Light light)
 {
     a = d.dot(d);
     b = 2*v.dot(d);
@@ -19,13 +22,22 @@ void Sphere::calculations(Vector v)
 //    printf("(%d,%d,%d)", d.x,d.y,d.z);
 //    printf("a: %d \n B: %d \n C:%d", a,b,c);
     disc = (b*b)-4*a*c;
-    if (disc < 0) intensity = 0;
+    if (disc < 0)
+    {
+//        std::cout << "intersects" << "\n";
+        intensity = 0;
+    }
     else
     {
         intensity = 1;
+//        std::cout << "intersects" << "\n";
     }
 
     t = (-b- sqrt(disc))/2*a;
+    if (t > 0)
+    {
+//        std::cout << "intersects" << "\n";
+    }
 //    std::cout << t << "\n";
     p = origin + d * t;
 //    std::cout << "("<<p.x << "," << p.y << p.??z <<")" << "\n";
@@ -61,7 +73,11 @@ double Sphere::ambientIlluminationBlue(class Light light, Vector surfaceNormal)
 
 double Sphere::ambientIlluminationRed(class Light light, Vector surfaceNormal)
 {
-    return (material.ambientRed* light.red);
+    double pixelValue = (material.ambientRed* intensity);
+    if (pixelValue > 255){
+        return 255;
+    }
+    return pixelValue;
 }
 
 double Sphere::ambientIlluminationGreen(class Light light, Vector surfaceNormal)
@@ -72,12 +88,23 @@ double Sphere::ambientIlluminationGreen(class Light light, Vector surfaceNormal)
 
 double Sphere::diffuseIlluminationRed(class Light light, Vector surfaceNormal)
 {
-    return (material.diffuseRed*light.red*(surfaceNormal.dot(light.direction)));
+    double pixelValue;
+    pixelValue = (material.diffuseRed*light.red*(surfaceNormal.dot(light.direction)));
+
+    if (pixelValue > 255){
+        return 255;
+    }
+    return pixelValue;
 }
 
 double Sphere::diffuseIlluminationGreen(class Light light, Vector surfaceNormal)
 {
-    return (material.diffuseGreen*light.green*(surfaceNormal.dot(light.direction)));
+    double pixelValue;
+    pixelValue = (material.diffuseGreen*light.green*(surfaceNormal.dot(light.direction)));
+    if (pixelValue > 255){
+        return 255;
+    }
+    return pixelValue;
 }
 
 double Sphere::diffuseIlluminationBlue(class Light light, Vector surfaceNormal)

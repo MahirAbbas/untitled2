@@ -22,15 +22,18 @@ void Scene::renderSphere() {
         for (int x = 0; x < width; x++) {
             int index = y * width * 4 + x * 4;
             // origin of ray
-            Sphere closestSphere = Spheres[0];
+//            Sphere closestSphere = Spheres[0];
+            Sphere closestSphere = sphere;
             origin = Vector(x - w, y - h, 0);
-            for (auto &sphere: Spheres) {
-                double t;
-                if (sphere.intersects(origin)) {
+            if (false) {
+                for (auto &sphere: Spheres) {
+                    double t;
+                    if (sphere.intersects(origin)) {
 //                    std::cout << " intersects" << "\n";
-                    sphere.intersesectsAtT();
-                    if (sphere.t < closestSphere.t) {
-                        closestSphere = sphere;
+                        sphere.intersesectsAtT();
+                        if (sphere.t < closestSphere.t) {
+                            closestSphere = sphere;
+                        }
                     }
                 }
             }
@@ -42,27 +45,25 @@ void Scene::renderSphere() {
 
             sphere.setOrigin(Vector(x - w, y - h, 0));
             Vector v = sphere.origin - sphere.Cs;
-            sphere.calculations(v);
+            sphere.calculations(v, light);
             pixelData[index] = sphere.intensity * sphere.material.colourRed;           // R
+//            pixelData[index + 1] = sphere.intensity * sphere.material.colourGreen;       // G
+//            pixelData[index + 2] = sphere.intensity * sphere.material.colourBlue;       // B
+            pixelData[index + 3] = 255;     // A
 
+
+            double red = closestSphere.diffuseIlluminationRed(light, normal) +
+                         closestSphere.ambientIlluminationRed(light, normal);
+//            if (red > 255) red = 255;
 //            pixelData[index] = closestSphere.diffuseIlluminationRed(light, normal) +
 //                               closestSphere.ambientIlluminationRed(light, normal); //R
-
-//                               std::cout << "calculated" << std::endl;
-//            std::cout << closestSphere.diffuseIlluminationBlue(light, normal) << "\n";
-
-            pixelData[index + 1] = sphere.intensity * sphere.material.colourGreen;       // G
-
+//                pixelData[index] = red;
 //            pixelData[index + 1] = closestSphere.diffuseIlluminationGreen(light, normal) +
 //                                   closestSphere.ambientIlluminationGreen(light, normal); //G
-
-            pixelData[index + 2] = sphere.intensity * sphere.material.colourBlue;       // B
-
 //            pixelData[index + 2] = closestSphere.diffuseIlluminationBlue(light, normal) +
 //                                   closestSphere.ambientIlluminationBlue(light, normal); //B
 //            pixelData[index + 3] = 255;     // A
 
-            pixelData[index + 3] = 255;     // A
 
         }
         }
