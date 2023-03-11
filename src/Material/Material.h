@@ -20,8 +20,8 @@ public:
         colourGreen = 1;
         ambientBlue = ambientGreen = ambientRed = 1;
         diffuseBlue = diffuseGreen = diffuseRed = 1;
-        specularRed = specularGreen = specularBlue =1;
-        shininessCoefficient = 1;
+        specularRed = specularGreen = specularBlue =200;
+        shininessCoefficient = 10;
     }
 };
 

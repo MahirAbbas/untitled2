@@ -139,7 +139,8 @@ double Sphere::specularIlluminationRed(class Light light,  Vector origin) {
     Vector sphereSurfaceNormal = normal;
     Vector eyeDirection = eye - p;
     Vector reflectedLight = light.direction - sphereSurfaceNormal * (sphereSurfaceNormal.dot(light.direction)) * 2.0 ;
-    pixelValue = material.specularRed * light.red * pow(reflectedLight.returnNormalised().dot(eyeDirection.returnNormalised()),material.shininessCoefficient);
+    pixelValue = material.specularRed * intensity * pow(reflectedLight.returnNormalised().dot(eyeDirection.returnNormalised()),material.shininessCoefficient);
+    if (pixelValue < 0) return 0;
     return pixelValue;
 }
 
@@ -150,7 +151,8 @@ double Sphere::specularIlluminationGreen(class Light light, Vector origin) {
     Vector sphereSurfaceNormal = normal;
     Vector eyeDirection = eye - p;
     Vector reflectedLight = light.direction - sphereSurfaceNormal * (sphereSurfaceNormal.dot(light.direction)) * 2.0 ;
-    pixelValue = material.specularGreen* light.red * pow(reflectedLight.returnNormalised().dot(eyeDirection.returnNormalised()),material.shininessCoefficient);
+    pixelValue = material.specularGreen*intensity* pow(reflectedLight.returnNormalised().dot(eyeDirection.returnNormalised()),material.shininessCoefficient);
+    if (pixelValue < 0) return 0;
     return pixelValue;
 }
 double Sphere::specularIlluminationBlue(class Light light, Vector origin) {
@@ -160,7 +162,8 @@ double Sphere::specularIlluminationBlue(class Light light, Vector origin) {
     Vector sphereSurfaceNormal = normal;
     Vector eyeDirection = eye - p;
     Vector reflectedLight = light.direction - sphereSurfaceNormal * (sphereSurfaceNormal.dot(light.direction)) * 2.0 ;
-    pixelValue = material.specularBlue * light.red * pow((reflectedLight.returnNormalised().dot(eyeDirection.returnNormalised())),material.shininessCoefficient);
+    pixelValue = material.specularBlue * intensity * pow((reflectedLight.returnNormalised().dot(eyeDirection.returnNormalised())),material.shininessCoefficient);
+    if (pixelValue < 0) return 0;
     return pixelValue;
 }
 bool Sphere::intersects(Vector origin) {
