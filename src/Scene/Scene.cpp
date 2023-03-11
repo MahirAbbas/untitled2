@@ -55,7 +55,7 @@ void Scene::renderSphere() {
 //            pixelData[index + 2] = sphere.intensity * sphere.material.colourBlue;       // B
             pixelData[index + 3] = 255;     // A
             diffuseRed = closestSphere.diffuseIlluminationRed(light, normal);
-//            ambientRed = closestSphere.ambientIlluminationRed();
+            ambientRed = closestSphere.ambientIlluminationRed();
             specularRed = closestSphere.specularIlluminationRed(light,origin); //R
             double red = diffuseRed
                         + ambientRed
@@ -65,7 +65,7 @@ void Scene::renderSphere() {
 //            printf("diffuse %f, ambient = %f, specular = %f", closestSphere.diffuseIlluminationRed(light, normal),  closestSphere.ambientIlluminationRed(light, normal), closestSphere.specularIlluminationRed(light,origin));
 
             diffuseGreen = closestSphere.diffuseIlluminationGreen(light, normal);
-//            ambientGreen = closestSphere.ambientIlluminationGreen();
+            ambientGreen = closestSphere.ambientIlluminationGreen();
             specularGreen= closestSphere.specularIlluminationGreen(light,origin); //G
             double green = diffuseGreen
                          + ambientGreen
@@ -74,7 +74,7 @@ void Scene::renderSphere() {
             pixelData[index + 1] = green ;
 
             diffuseBlue = closestSphere.diffuseIlluminationBlue(light, normal);
-//            ambientBlue = closestSphere.ambientIlluminationBlue();
+            ambientBlue = closestSphere.ambientIlluminationBlue();
             specularBlue = closestSphere.specularIlluminationBlue(light,origin); //B
             double blue = diffuseBlue
                            + ambientBlue
