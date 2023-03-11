@@ -27,7 +27,7 @@ public:
     int width, height;
     Scene(int width, int height, Light light);
     std::vector<Sphere> Spheres;
-    Sphere sphere = Sphere(Vector(0,-100,1200), 300);
+    Sphere sphere = Sphere(Vector(0,0,1200), 200);
 
     GLuint texture = NULL;
     ImVec2 imagesize = ImVec2(600, 400);

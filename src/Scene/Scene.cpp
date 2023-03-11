@@ -46,18 +46,34 @@ void Scene::renderSphere() {
             sphere.setOrigin(Vector(x - w, y - h, 0));
             Vector v = sphere.origin - sphere.Cs;
             sphere.calculations(v, light);
-            pixelData[index] = sphere.intensity * sphere.material.colourRed;           // R
+//            pixelData[index] = sphere.intensity * sphere.material.colourRed;           // R
 //            pixelData[index + 1] = sphere.intensity * sphere.material.colourGreen;       // G
 //            pixelData[index + 2] = sphere.intensity * sphere.material.colourBlue;       // B
             pixelData[index + 3] = 255;     // A
 
+            double diffuseRed = closestSphere.diffuseIlluminationRed(light, normal);
+            double ambientRed = closestSphere.ambientIlluminationRed(light, normal);
+            double specularRed = closestSphere.specularIlluminationRed(light,origin); //R
+            double red = diffuseRed
+                        + ambientRed
+                        + specularRed;
+            if (red > 255) red = 255;
+//            printf("diffuse %f, ambient = %f, specular = %f", closestSphere.diffuseIlluminationRed(light, normal),  closestSphere.ambientIlluminationRed(light, normal), closestSphere.specularIlluminationRed(light,origin));
+            pixelData[index] = red;
+            double green = closestSphere.diffuseIlluminationGreen(light, normal)
+                    +closestSphere.ambientIlluminationGreen(light, normal)
+                    +closestSphere.specularIlluminationGreen(light,origin); //G
+           if (green> 255) green= 255;
+           pixelData[index + 1] = green;
 
-            double red = closestSphere.diffuseIlluminationRed(light, normal) +
-                         closestSphere.ambientIlluminationRed(light, normal);
-//            if (red > 255) red = 255;
+            double blue =   closestSphere.diffuseIlluminationBlue(light, normal)
+                    + closestSphere.ambientIlluminationBlue(light, normal)
+                    + closestSphere.specularIlluminationBlue(light,origin); //B
+            if (blue > 255) blue= 255;
+            pixelData[index + 2] = blue;
+
 //            pixelData[index] = closestSphere.diffuseIlluminationRed(light, normal) +
 //                               closestSphere.ambientIlluminationRed(light, normal); //R
-//                pixelData[index] = red;
 //            pixelData[index + 1] = closestSphere.diffuseIlluminationGreen(light, normal) +
 //                                   closestSphere.ambientIlluminationGreen(light, normal); //G
 //            pixelData[index + 2] = closestSphere.diffuseIlluminationBlue(light, normal) +

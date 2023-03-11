@@ -34,6 +34,7 @@ void Sphere::calculations(Vector v, class Light light)
     }
 
     t = (-b- sqrt(disc))/2*a;
+    
     if (t > 0)
     {
 //        std::cout << "intersects" << "\n";
@@ -43,7 +44,7 @@ void Sphere::calculations(Vector v, class Light light)
 //    std::cout << "("<<p.x << "," << p.y << p.??z <<")" << "\n";
 //    printf("(%d,%d,%d)", p.x,p.y,p.z);
     Lv = Light-p;
-//            Lv.normalise();
+            Lv.normalise();
 //            Why doesn't normalise work?
     normal = p - Cs;
     normal.normalise();
@@ -68,7 +69,13 @@ void Sphere::calculations(Vector v, class Light light)
 
 double Sphere::ambientIlluminationBlue(class Light light, Vector surfaceNormal)
 {
-    return (material.ambientBlue * light.blue);
+
+    double pixelValue = (material.ambientBlue* intensity);
+    if (pixelValue > 255){
+        return 255;
+    }
+    if (pixelValue < 0) return 0;
+    return pixelValue;
 }
 
 double Sphere::ambientIlluminationRed(class Light light, Vector surfaceNormal)
@@ -77,48 +84,85 @@ double Sphere::ambientIlluminationRed(class Light light, Vector surfaceNormal)
     if (pixelValue > 255){
         return 255;
     }
+    if (pixelValue < 0) return 0;
     return pixelValue;
 }
 
 double Sphere::ambientIlluminationGreen(class Light light, Vector surfaceNormal)
 {
-    return (material.ambientGreen* light.green);
+    double pixelValue = (material.ambientGreen* intensity);
+    if (pixelValue > 255){
+        return 255;
+    }
+    if (pixelValue < 0) return 0;
+    return pixelValue;
 }
 
 
 double Sphere::diffuseIlluminationRed(class Light light, Vector surfaceNormal)
 {
     double pixelValue;
-    pixelValue = (material.diffuseRed*light.red*(surfaceNormal.dot(light.direction)));
+    pixelValue = (material.diffuseRed*intensity*(surfaceNormal.dot(light.direction)));
 
     if (pixelValue > 255){
         return 255;
     }
+    if (pixelValue < 0) return 0;
     return pixelValue;
 }
 
 double Sphere::diffuseIlluminationGreen(class Light light, Vector surfaceNormal)
 {
     double pixelValue;
-    pixelValue = (material.diffuseGreen*light.green*(surfaceNormal.dot(light.direction)));
+    pixelValue = (material.diffuseGreen*intensity*(surfaceNormal.dot(light.direction)));
     if (pixelValue > 255){
         return 255;
     }
+    if (pixelValue < 0) return 0;
     return pixelValue;
 }
 
 double Sphere::diffuseIlluminationBlue(class Light light, Vector surfaceNormal)
 {
-    return (material.diffuseBlue*light.blue*(surfaceNormal.dot(light.direction)));
+    double pixelValue;
+    pixelValue = (material.diffuseBlue*intensity*(surfaceNormal.dot(light.direction)));
+    if (pixelValue > 255){
+        return 255;
+    }
+    if (pixelValue < 0) return 0;
+    return pixelValue;
 }
-//void Sphere::calculatePhongReflection(class Light light, Vector sphereSurfaceNormal) {
-// page 17 for diffuse illumination
-//    Vector reflectedRay = light.direction - sphereSurfaceNormal * (2 * (sphereSurfaceNormal.dot(light.direction))) ;
-//     (material.specularBlue * light.blue*(reflectedRay.normalise()*directionFrompointToPixel.normalise)^shinienessCoefficient);
-//    (material.ambientRed* light.red)+(material.diffuseRed*light.red*(sphereSurfaceNormal * lightDirection))+(material.specularRed* light.red*(reflectedray.normailise()*directionFrompointToPixel.normalise)^shinienessCoefficient);
-//    (material.ambientGreen* light.green)+(material.diffuseGreen*light.green*(sphereSurfaceNormal * lightDirection))+(material.specularGreen* light.Green*(reflectedray.normailise()*directionFrompointToPixel.normalise)^shinienessCoefficient);
-//}
+double Sphere::specularIlluminationRed(class Light light,  Vector origin) {
+    double pixelValue;
+//    Vector normalisedLightVector = light.direction.returnNormalised();
+//    Vector normalisedSurfaceNormal = sphereSurfaceNormal.returnNormalised();
+    Vector sphereSurfaceNormal = normal;
+    Vector eyeDirection = eye - p;
+    Vector reflectedLight = light.direction - sphereSurfaceNormal * (sphereSurfaceNormal.dot(light.direction)) * 2.0 ;
+    pixelValue = material.specularRed * light.red * pow((reflectedLight.returnNormalised().dot(eyeDirection.returnNormalised())),material.shininessCoefficient);
+    return pixelValue;
+}
 
+double Sphere::specularIlluminationGreen(class Light light, Vector origin) {
+    double pixelValue;
+//    Vector normalisedLightVector = light.direction.returnNormalised();
+//    Vector normalisedSurfaceNormal = sphereSurfaceNormal.returnNormalised();
+    Vector sphereSurfaceNormal = normal;
+    Vector eyeDirection = eye - p;
+    Vector reflectedLight = light.direction - sphereSurfaceNormal * (sphereSurfaceNormal.dot(light.direction)) * 2.0 ;
+    pixelValue = material.specularGreen* light.red * pow((reflectedLight.returnNormalised().dot(eyeDirection.returnNormalised())),material.shininessCoefficient);
+    return pixelValue;
+}
+double Sphere::specularIlluminationBlue(class Light light, Vector origin) {
+    double pixelValue;
+//    Vector normalisedLightVector = light.direction.returnNormalised();
+//    Vector normalisedSurfaceNormal = sphereSurfaceNormal.returnNormalised();
+    Vector sphereSurfaceNormal = normal;
+    Vector eyeDirection = eye - p;
+    Vector reflectedLight = light.direction - sphereSurfaceNormal * (sphereSurfaceNormal.dot(light.direction)) * 2.0 ;
+    pixelValue = material.specularBlue * light.red * pow((reflectedLight.returnNormalised().dot(eyeDirection.returnNormalised())),material.shininessCoefficient);
+    return pixelValue;
+}
 bool Sphere::intersects(Vector origin) {
     Vector v = origin - Cs;
     a = d.dot(d);

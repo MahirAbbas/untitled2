@@ -33,6 +33,14 @@ public:
             z /= mag;
         }
     }
+    Vector returnNormalised()
+    {
+        double mag = magnitude();
+        if (mag != 0)
+        {
+            return Vector(x /= mag, y/= mag, z/= mag);
+        }
+    }
 
     double dot(Vector a)
     {

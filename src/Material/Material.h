@@ -13,11 +13,15 @@ public:
     float ambientRed, ambientGreen, ambientBlue;
     float diffuseRed, diffuseGreen, diffuseBlue;
     float specularRed, specularGreen, specularBlue;
+    float shininessCoefficient;
     Material()
     {
         colourRed = 1;
         colourGreen = 1;
-        colourBlue = 1;
+        ambientBlue = ambientGreen = ambientRed = 1;
+        diffuseBlue = diffuseGreen = diffuseRed = 1;
+        specularRed = specularGreen = specularBlue =1;
+        shininessCoefficient = 3;
     }
 };
 

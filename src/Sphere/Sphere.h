@@ -31,9 +31,10 @@
         // radius = radius of Sphere (scalar)
         // Cs - origin of the Sphere
         Vector Cs, p;
-        double radius ;
+        float radius ;
         double t = 0;
         Vector origin= Vector(0, 0, 0);
+        Vector eye = Vector(0,0,0);
 //        Vector v = origin-Cs;
 //        Vector v;
         Vector Light = Vector(150, 150, -250);
@@ -66,6 +67,9 @@
         double diffuseIlluminationGreen(class Light light, Vector surfaceNormal);
         double diffuseIlluminationBlue(class Light light, Vector surfaceNormal);
 
+        double specularIlluminationRed(class Light light,  Vector origin);
+        double specularIlluminationGreen(class Light light,  Vector origin);
+        double specularIlluminationBlue(class Light light,  Vector origin);
 
 //        void
     };
