@@ -62,14 +62,15 @@ int main() {
         if (ImGui::SliderFloat("Light x", &newGui.sphereScene.light.direction.x, -600, 500));
         if (ImGui::SliderFloat("Light y", &newGui.sphereScene.light.direction.y, -600, 500));
 
+//        if (ImGui::SliderFloat("Light y", &newGui.sphereScene.light.direction.y, -600, 500));
 //            (ImGui::SliderFloat("green", &myGui.sphere.material.colourGreen, 0.f, 1.f));
 //            (ImGui::SliderFloat("red", &myGui.sphere.material.colourRed, 0.f, 1.f));
 //            (ImGui::SliderFloat("blue", &myGui.sphere.material.colourBlue, 0.f, 1.f));
         ImGui::Separator();
 
         ImGui::TextWrapped("Debug Window");
-        ImGui::Text("Application average %.3f ms/frame (%.1f FPS)", 1000.0f / ImGui::GetIO().Framerate,
-                    ImGui::GetIO().Framerate);
+//        ImGui::Text("Application average %.3f ms/frame (%.1f FPS)", 1000.0f / ImGui::GetIO().Framerate,ImGui::GetIO().Framerate);
+//        ImGui::Text("r: %f, g: %f, b: %f \n", scene.` specularRed, specularGreen, specularBlue, );
 //            ImGui::Text("col: %.1f", myGui.Sphere.col);
         ImGui::PushStyleColor(ImGuiCol_ChildBg, IM_COL32(127, 127, 127, 100));
         ImGui::BeginChild("Debug_win", ImVec2(400, 200), true, ImGuiWindowFlags_None);

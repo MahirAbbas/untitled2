@@ -67,7 +67,7 @@ void Sphere::calculations(Vector v, class Light light)
     if (intensity > 255) intensity = 255;
 }
 
-double Sphere::ambientIlluminationBlue(class Light light, Vector surfaceNormal)
+double Sphere::ambientIlluminationBlue()
 {
 
     double pixelValue = (material.ambientBlue* intensity);
@@ -78,7 +78,7 @@ double Sphere::ambientIlluminationBlue(class Light light, Vector surfaceNormal)
     return pixelValue;
 }
 
-double Sphere::ambientIlluminationRed(class Light light, Vector surfaceNormal)
+double Sphere::ambientIlluminationRed()
 {
     double pixelValue = (material.ambientRed* intensity);
     if (pixelValue > 255){
@@ -88,7 +88,7 @@ double Sphere::ambientIlluminationRed(class Light light, Vector surfaceNormal)
     return pixelValue;
 }
 
-double Sphere::ambientIlluminationGreen(class Light light, Vector surfaceNormal)
+double Sphere::ambientIlluminationGreen()
 {
     double pixelValue = (material.ambientGreen* intensity);
     if (pixelValue > 255){
@@ -139,7 +139,7 @@ double Sphere::specularIlluminationRed(class Light light,  Vector origin) {
     Vector sphereSurfaceNormal = normal;
     Vector eyeDirection = eye - p;
     Vector reflectedLight = light.direction - sphereSurfaceNormal * (sphereSurfaceNormal.dot(light.direction)) * 2.0 ;
-    pixelValue = material.specularRed * light.red * pow((reflectedLight.returnNormalised().dot(eyeDirection.returnNormalised())),material.shininessCoefficient);
+    pixelValue = material.specularRed * light.red * pow(reflectedLight.returnNormalised().dot(eyeDirection.returnNormalised()),material.shininessCoefficient);
     return pixelValue;
 }
 
@@ -150,7 +150,7 @@ double Sphere::specularIlluminationGreen(class Light light, Vector origin) {
     Vector sphereSurfaceNormal = normal;
     Vector eyeDirection = eye - p;
     Vector reflectedLight = light.direction - sphereSurfaceNormal * (sphereSurfaceNormal.dot(light.direction)) * 2.0 ;
-    pixelValue = material.specularGreen* light.red * pow((reflectedLight.returnNormalised().dot(eyeDirection.returnNormalised())),material.shininessCoefficient);
+    pixelValue = material.specularGreen* light.red * pow(reflectedLight.returnNormalised().dot(eyeDirection.returnNormalised()),material.shininessCoefficient);
     return pixelValue;
 }
 double Sphere::specularIlluminationBlue(class Light light, Vector origin) {

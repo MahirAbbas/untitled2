@@ -18,6 +18,10 @@ void Scene::renderSphere() {
     Spheres.push_back(sphere);
     unsigned char* pixelData = new unsigned char[width * height * 4];
     const int w = width / 2, h = height / 2;
+
+    double diffuseRed, ambientRed, specularRed = 0;
+    double diffuseGreen, ambientGreen, specularGreen = 0;
+    double diffuseBlue, ambientBlue, specularBlue= 0;
     for (int y = 0; y < height; y++){
         for (int x = 0; x < width; x++) {
             int index = y * width * 4 + x * 4;
@@ -50,28 +54,34 @@ void Scene::renderSphere() {
 //            pixelData[index + 1] = sphere.intensity * sphere.material.colourGreen;       // G
 //            pixelData[index + 2] = sphere.intensity * sphere.material.colourBlue;       // B
             pixelData[index + 3] = 255;     // A
-
-            double diffuseRed = closestSphere.diffuseIlluminationRed(light, normal);
-            double ambientRed = closestSphere.ambientIlluminationRed(light, normal);
-            double specularRed = closestSphere.specularIlluminationRed(light,origin); //R
+            diffuseRed = closestSphere.diffuseIlluminationRed(light, normal);
+//            ambientRed = closestSphere.ambientIlluminationRed();
+            specularRed = closestSphere.specularIlluminationRed(light,origin); //R
             double red = diffuseRed
                         + ambientRed
                         + specularRed;
             if (red > 255) red = 255;
-//            printf("diffuse %f, ambient = %f, specular = %f", closestSphere.diffuseIlluminationRed(light, normal),  closestSphere.ambientIlluminationRed(light, normal), closestSphere.specularIlluminationRed(light,origin));
             pixelData[index] = red;
-            double green = closestSphere.diffuseIlluminationGreen(light, normal)
-                    +closestSphere.ambientIlluminationGreen(light, normal)
-                    +closestSphere.specularIlluminationGreen(light,origin); //G
-           if (green> 255) green= 255;
-           pixelData[index + 1] = green;
+//            printf("diffuse %f, ambient = %f, specular = %f", closestSphere.diffuseIlluminationRed(light, normal),  closestSphere.ambientIlluminationRed(light, normal), closestSphere.specularIlluminationRed(light,origin));
 
-            double blue =   closestSphere.diffuseIlluminationBlue(light, normal)
-                    + closestSphere.ambientIlluminationBlue(light, normal)
-                    + closestSphere.specularIlluminationBlue(light,origin); //B
-            if (blue > 255) blue= 255;
+            diffuseGreen = closestSphere.diffuseIlluminationGreen(light, normal);
+//            ambientGreen = closestSphere.ambientIlluminationGreen();
+            specularGreen= closestSphere.specularIlluminationGreen(light,origin); //G
+            double green = diffuseGreen
+                         + ambientGreen
+                         + specularGreen;
+            if (green > 255) green = 255;
+            pixelData[index + 1] = green ;
+
+            diffuseBlue = closestSphere.diffuseIlluminationBlue(light, normal);
+//            ambientBlue = closestSphere.ambientIlluminationBlue();
+            specularBlue = closestSphere.specularIlluminationBlue(light,origin); //B
+            double blue = diffuseBlue
+                           + ambientBlue
+                           + specularBlue;
+            if (blue > 255) blue = 255;
             pixelData[index + 2] = blue;
-
+//            printf("r: %f, g: %f, b: %f \n", specularRed, specularGreen, specularBlue);
 //            pixelData[index] = closestSphere.diffuseIlluminationRed(light, normal) +
 //                               closestSphere.ambientIlluminationRed(light, normal); //R
 //            pixelData[index + 1] = closestSphere.diffuseIlluminationGreen(light, normal) +

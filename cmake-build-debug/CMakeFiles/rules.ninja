@@ -204,7 +204,7 @@ rule CXX_STATIC_LIBRARY_LINKER__Material_Debug
 # Rule for re-running cmake.
 
 rule RERUN_CMAKE
-  command = /home/mahir/Applications/clion-2022.3.2/bin/cmake/linux/x64/bin/cmake --regenerate-during-build -S/home/mahir/CLionProjects/ray -B/home/mahir/CLionProjects/ray/cmake-build-debug
+  command = /home/mahir/Applications/clion-2022.3.2/bin/cmake/linux/x64/bin/cmake --regenerate-during-build -S/home/mahir/CLionProjects/untitled2 -B/home/mahir/CLionProjects/untitled2/cmake-build-debug
   description = Re-running CMake...
   generator = 1
 

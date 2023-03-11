@@ -33,11 +33,8 @@ public:
     ImVec2 imagesize = ImVec2(600, 400);
 
     Light light;
-//    unsigned char *pixelData = new unsigned char[width * height * 4];
 
     void renderSphere();
-
 };
-
 
 #endif //UNTITLED2_SCENE_H

@@ -59,9 +59,9 @@
 
         void calculatePhongReflectuin();
 
-        double ambientIlluminationBlue(class Light light, Vector surfaceNormal);
-        double ambientIlluminationGreen(class Light light, Vector surfaceNormal);
-        double ambientIlluminationRed(class Light light, Vector surfaceNormal);
+        double ambientIlluminationBlue();
+        double ambientIlluminationGreen();
+        double ambientIlluminationRed();
 
         double diffuseIlluminationRed(class Light light, Vector surfaceNormal);
         double diffuseIlluminationGreen(class Light light, Vector surfaceNormal);

@@ -21,7 +21,7 @@ public:
         ambientBlue = ambientGreen = ambientRed = 1;
         diffuseBlue = diffuseGreen = diffuseRed = 1;
         specularRed = specularGreen = specularBlue =1;
-        shininessCoefficient = 3;
+        shininessCoefficient = 1;
     }
 };
 
