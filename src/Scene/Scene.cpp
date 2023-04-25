@@ -1,5 +1,5 @@
 #include "Scene.h"
-
+#include <thread>
 //TODO
 // spawn sphere
 // light
@@ -12,6 +12,8 @@ Scene::Scene(int width, int height, Light light) {
 //    std::cout << "thrown here" << std::endl;
         this->light = light;
 }
+
+
 
 void Scene::renderSphere() {
     Vector origin = Vector(0, 0, 0);

@@ -5,3 +5,9 @@
 cmake-build-debug/
 *.a
 *.o
+*.cmake
+untitled2
+CMakeFiles/
+CMakeCache.txt
+*.ini
+Makefile

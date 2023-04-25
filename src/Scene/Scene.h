@@ -35,6 +35,10 @@ public:
     Light light;
 
     void renderSphere();
+
+    void threadRenderRed();
+    void threadRenderGreen();
+    void threadRenderBlue();
 };
 
 #endif //UNTITLED2_SCENE_H
