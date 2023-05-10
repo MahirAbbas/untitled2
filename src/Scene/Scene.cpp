@@ -14,11 +14,11 @@ Scene::Scene(int width, int height, Light light) {
   //    std::cout << "thrown here" << std::endl;
   this->light = light;
 }
-void threadRenderRed(std::promise<int>&& prom, Sphere closestsphere) {
+void threadRenderRed(std::promise<int>&& prom, Sphere closestSphere) {
 
-  diffuseRed = closestSphere.diffuseIlluminationRed(light, normal);
-  ambientRed = closestSphere.ambientIlluminationRed();
-  specularRed = closestSphere.specularIlluminationRed(light, origin); // R
+  double diffuseRed = closestSphere.diffuseIlluminationRed(light, normal);
+  double ambientRed = closestSphere.ambientIlluminationRed();
+  double specularRed = closestSphere.specularIlluminationRed(light, origin); // R
   double red = diffuseRed + ambientRed + specularRed;
   if (red > 255)
     red = 255;
@@ -26,22 +26,22 @@ void threadRenderRed(std::promise<int>&& prom, Sphere closestsphere) {
 
 }
 
-void threadRenderGreen(std::promise<int>&& prom,Sphere closestsphere) {
+void threadRenderGreen(std::promise<int>&& prom,Sphere closestSphere, Light light, Vector normal, Vector origin) {
 
-  diffuseGreen = closestSphere.diffuseIlluminationGreen(light, normal);
-  ambientGreen = closestSphere.ambientIlluminationGreen();
-  specularGreen = closestSphere.specularIlluminationGreen(light, origin); // G
+  double diffuseGreen = closestSphere.diffuseIlluminationGreen(light, normal);
+  double ambientGreen = closestSphere.ambientIlluminationGreen();
+  double specularGreen = closestSphere.specularIlluminationGreen(light, origin); // G
   double green = diffuseGreen + ambientGreen + specularGreen;
   if (green > 255)
     green = 255;
   prom.set_value(green);
 }
 
-void threadRenderBlue(std::promise<int>&& prom, Sphere closestsphere) {
+void threadRenderBlue(std::promise<int>&& prom, Sphere closestSphere) {
 
-  diffuseBlue = closestSphere.diffuseIlluminationBlue(light, normal);
-  ambientBlue = closestSphere.ambientIlluminationBlue();
-  specularBlue = closestSphere.specularIlluminationBlue(light, origin); // B
+  double diffuseBlue = closestSphere.diffuseIlluminationBlue(light, normal);
+  double ambientBlue = closestSphere.ambientIlluminationBlue();
+  double specularBlue = closestSphere.specularIlluminationBlue(light, origin); // B
   double blue = diffuseBlue + ambientBlue + specularBlue;
   if (blue > 255)
     blue = 255;
@@ -53,9 +53,9 @@ void Scene::renderSphere() {
   unsigned char *pixelData = new unsigned char[width * height * 4];
   const int w = width / 2, h = height / 2;
 
-  double diffuseRed, ambientRed, specularRed = 0;
-  double diffuseGreen, ambientGreen, specularGreen = 0;
-  double diffuseBlue, ambientBlue, specularBlue = 0;
+  // double diffuseRed, ambientRed, specularRed = 0;
+  // double diffuseGreen, ambientGreen, specularGreen = 0;
+  // double diffuseBlue, ambientBlue, specularBlue = 0;
   for (int y = 0; y < height; y++) {
     for (int x = 0; x < width; x++) {
       int index = y * width * 4 + x * 4;
@@ -104,14 +104,16 @@ void Scene::renderSphere() {
       std::thread t2(threadRenderGreen, std::move(promiseGreen), closestSphere);
       std::thread t3(threadRenderBlue, std::move(promiseBlue), closestSphere);
 
-      t1.join():
-      t2.join():
-      t3.join():
+      t1.join();
+      t2.join();
+      t3.join();
 
       int result1 = futureRed.get();
-      int result1 = futureGreen.get();
-      int result1 = futureBlue.get();
-
+      pixelData[index] = result1;
+      int result2 = futureGreen.get();
+      pixelData[index + 1] = result2;
+      int result3 = futureBlue.get();
+      pixelData[index + 2] = result3;
 
       // diffuseRed = closestSphere.diffuseIlluminationRed(light, normal);
       // ambientRed = closestSphere.ambientIlluminationRed();
@@ -125,22 +127,22 @@ void Scene::renderSphere() {
       //            closestSphere.ambientIlluminationRed(light, normal),
       //            closestSphere.specularIlluminationRed(light,origin));
 
-      diffuseGreen = closestSphere.diffuseIlluminationGreen(light, normal);
-      ambientGreen = closestSphere.ambientIlluminationGreen();
-      specularGreen =
-          closestSphere.specularIlluminationGreen(light, origin); // G
-      double green = diffuseGreen + ambientGreen + specularGreen;
-      if (green > 255)
-        green = 255;
-      pixelData[index + 1] = green;
+      // diffuseGreen = closestSphere.diffuseIlluminationGreen(light, normal);
+      // ambientGreen = closestSphere.ambientIlluminationGreen();
+      // specularGreen =
+      //     closestSphere.specularIlluminationGreen(light, origin); // G
+      // double green = diffuseGreen + ambientGreen + specularGreen;
+      // if (green > 255)
+      //   green = 255;
+      // pixelData[index + 1] = green;
 
-      diffuseBlue = closestSphere.diffuseIlluminationBlue(light, normal);
-      ambientBlue = closestSphere.ambientIlluminationBlue();
-      specularBlue = closestSphere.specularIlluminationBlue(light, origin); // B
-      double blue = diffuseBlue + ambientBlue + specularBlue;
-      if (blue > 255)
-        blue = 255;
-      pixelData[index + 2] = blue;
+      // diffuseBlue = closestSphere.diffuseIlluminationBlue(light, normal);
+      // ambientBlue = closestSphere.ambientIlluminationBlue();
+      // specularBlue = closestSphere.specularIlluminationBlue(light, origin); // B
+      // double blue = diffuseBlue + ambientBlue + specularBlue;
+      // if (blue > 255)
+      //   blue = 255;
+      // pixelData[index + 2] = blue;
       //            printf("r: %f, g: %f, b: %f \n", specularRed, specularGreen,
       //            specularBlue); pixelData[index] =
       //            closestSphere.diffuseIlluminationRed(light, normal) +
