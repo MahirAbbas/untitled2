@@ -38,9 +38,12 @@ public:
 
   void renderSphere();
 
-  void threadRenderRed(std::promise<int> &&prom, Sphere closestsphere);
-  void threadRenderGreen(std::promise<int> &&prom, Sphere closestsphere);
-  void threadRenderBlue(std::promise<int> &&prom, Sphere closestsphere);
+  void threadRenderRed(std::promise<int> &&prom, Sphere closestsphere,
+                       Vector normal, Vector origin);
+  void threadRenderGreen(std::promise<int> &&prom, Sphere closestsphere,
+                         Vector normal, Vector origin);
+  void threadRenderBlue(std::promise<int> &&prom, Sphere closestsphere,
+                        Vector normal, Vector origin);
 };
 
 #endif // UNTITLED2_SCENE_H
