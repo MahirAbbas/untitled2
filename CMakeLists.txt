@@ -13,5 +13,5 @@ add_subdirectory(src/Material)
 #add_subdirectory(src/Sphere)
 
 add_executable(untitled2 imgui/glad.c main.cpp )
-target_link_libraries(untitled2 glfw GL dl pthread Light Gui Scene imgui backends Sphere Vector )
+target_link_libraries(untitled2 glfw GL dl Light Gui Scene imgui backends Sphere Vector )
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/bin)
