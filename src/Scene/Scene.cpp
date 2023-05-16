@@ -105,12 +105,12 @@ void Scene::renderSphere() {
       std::promise<int> promiseBlue;
       std::future<int> futureBlue = promiseBlue.get_future();
 
-      std::thread t1(threadRenderRed, std::move(promiseRed), closestSphere,
-                     normal, origin);
-      std::thread t2(threadRenderGreen, std::move(promiseGreen), closestSphere,
-                     normal, origin);
-      std::thread t3(threadRenderBlue, std::move(promiseBlue), closestSphere,
-                     normal, origin);
+      std::thread t1(&Scene::threadRenderRed, this, std::move(promiseRed),
+                     closestSphere, normal, origin);
+      std::thread t2(&Scene::threadRenderGreen, this, std::move(promiseGreen),
+                     closestSphere, normal, origin);
+      std::thread t3(&Scene::threadRenderBlue, this, std::move(promiseBlue),
+                     closestSphere, normal, origin);
 
       t1.join();
       t2.join();
